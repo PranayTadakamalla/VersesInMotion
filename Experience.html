@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experience Poetry | Verses in Motion</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Lato:wght@300;400;700&display=swap");
+
+      body {
+        font-family: "Lato", sans-serif;
+        background-color: #f7f9fc;
+      }
+
+      .baskerville {
+        font-family: "Libre Baskerville", serif;
+      }
+
+      .header-bg {
+        background: linear-gradient(135deg, #dee2ff 0%, #e9ecf5 100%);
+      }
+
+      .footer {
+        background: #1a1f2b;
+        color: white;
+        text-align: center;
+        padding: 12px;
+      }
+
+      /* Poem Card Styling */
+      .poem-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        background: white;
+        overflow: hidden;
+        position: relative;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Hover Effect */
+      .poem-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .poem-title {
+        color: #1a2b49;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .poem-text {
+        color: #1a2b49;
+        opacity: 0.8;
+      }
+
+      .poem-author {
+        color: #666;
+        font-size: 0.9rem;
+        font-style: italic;
+        margin-top: 10px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .poem-card:hover .poem-author {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex justify-between h-16 items-center">
+          <a href="Home.html" class="baskerville text-2xl text-[#1a2b49]"
+            >Verses in Motion</a
+          >
+          <div class="space-x-8">
+            <a
+              href="Experience.html"
+              class="text-gray-900 font-semibold hover:text-[#1e40af]"
+              >Experience</a
+            >
+            <a href="About.html" class="text-gray-700 hover:text-[#1e40af]"
+              >About</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Experience Header -->
+    <section class="header-bg py-24 text-center">
+      <div class="max-w-4xl mx-auto px-6">
+        <h1 class="baskerville text-5xl text-[#1a2b49]" data-aos="fade-up">
+          Experience Poetry
+        </h1>
+        <p
+          class="text-xl text-gray-700 mt-6 leading-relaxed"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Immerse yourself in a curated collection of contemporary verses that
+          speak to the heart and mind.
+        </p>
+      </div>
+    </section>
+
+    <!-- Poetry Collection -->
+    <section class="py-16 px-6 text-center">
+      <div
+        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        <!-- Loop through poems -->
+        <script>
+          const poems = [
+            {
+              title: "Unseen, Yet Infinite",
+              text: `Thousands see her, yet none perceive,<br />
+The way her presence makes me believe.<br />
+To them, she’s just a fleeting sight,<br />
+To me, she’s the sun, the stars, the night. <br><br>
+
+They speak to her with borrowed lines,<br />
+I carve my love in endless rhymes.<br/>
+Many may chase, may long, may yearn,<br/>
+But my heart for her will forever burn. <br><br>
+
+She’s not just beauty, she’s the air I breathe,
+The sky I paint, the fate I weave.
+They may admire, they may fall,
+But my madness outshines them all.`,
+              author: "Bezuban",
+            },
+            {
+              title: "I Miss You",
+              text: `I miss you when the sun shines bright,<br/>
+And even more in silent night.<br/>
+I miss the thought of seeing you the next day,<br/>
+The little things I used to do to make you stay. <br><br>
+
+I miss the way I would search around,<br/>
+Hoping you were to be found.<br/>
+The silly reasons I would make,<br/>
+Just to talk, for my heart’s sake. <br><br>
+
+I walked behind, yet stayed unseen,<br/>
+Imagining things that might have been.<br/>
+The way you smiled, the way you stared,<br/>
+Moments I wished that you had cared. <br><br>
+
+But now the days feel cold and long,<br/>
+Without you here, it all feels wrong.<br/>
+I miss it all, the thrill, the cheer,<br/>
+And most of all, I miss you near.`,
+              author: "Bezuban",
+            },
+            {
+              title: "Main Duniya Ko Samajh Chuka Hoon",
+              text: `Main duniya ko samajh chuka hoon,<br>
+                        Har raaz, har kahani jaan chuka hoon.<br>
+                        Phir bhi dhoke kakar har gaya hoon.`,
+              author: "Bezuban",
+            },
+            {
+              title: "Na Chand Ka Chaav Mila",
+              text: `Na chand ka chaav mila, na suraj ki dhoop mili,<br/> Main toh bas sanjh ki halki roshni mein tera intezaar kiye baitha hoon.<br><br> Maine tera intezaar kiya hai, kar raha hoon aur karta rahunga, <br/>Chahe tu aaye ya na aaye, mere intezaar ka diya yunhi jalta rahega.`,
+              author: "Bezuban",
+            },
+            {
+              title: "Rise and Reach",
+              text: `Rain or sky, don’t let a day slip by,<br/>
+Keep moving forward, reach for what’s high.<br/>
+Through every challenge, through every fight,<br/>
+Push ahead—chase and embrace the light. <br><br>
+
+When clouds hang low and the world feels slow,<br/>
+Rise above, let your spirit glow.<br/>
+No day is wasted, no time stands still,<br/>
+Keep climbing higher and trust your will.<br><br>
+
+When shadows linger and winds grow strong,<br/>
+Stand your ground for you’ve been brave all along.<br/>
+No time is lost, no dream will fade,<br/>
+Rise with courage and be unafraid. <br><br>
+
+So keep on going, reach for the height,<br/>
+For rain or sky, never let a day slip by.`,
+              author: "Bezuban",
+            },
+            {
+              title: "Pal Pal Mere Chain Ko",
+              text: `Pal pal mere chain ko yun churaya aap, ki Na paas aaya, na hi door gaya. 
+              <br><br>Mere Aankhon pe aisa jaadu chha gaya, Ki aapko na chhod sakta hoon, na bhool sakta hoon. 
+              <br><br>Aise mere Dil mein basa hai aap, Jaise shyam mein basi ho Radha. `,
+              author: "Bezuban",
+            },
+            {
+              title: "Mohabbat Ka Ilzaam",
+              text: `Mohabbat ka ilzaam sab seh liya,<br/>
+Dil bechara khud hi lut gaya.<br/>
+Jis haath ne ujale diye the mujhe,<br/>
+Ussi haath ne aag bhi laga diya.<br><br>
+
+Ek pal mein sajaya tha jo dil ka shehar,<br/>
+Wohi pal mein usne mita bhi diya.<br/>
+Wafa ki raahon mein chhod kar mujhe,<br/>
+Woh khud hi khuda ban gaya.`,
+              author: "Bezuban",
+            },
+            {
+              title: "The Night Goes On",
+              text: `I count the stars, one by one,<br/>
+The night is long, but sleep won’t come.<br/>
+I close my eyes, but all I see,<br/>
+Are memories of you and me. <br><br>
+
+I miss your voice, I miss your smile,<br/>
+I wish you’d stay, just for a while.<br/>
+My heart feels lost, my world is blue,<br/>
+I don’t know how to live without you. <br><br>
+
+The night goes on, but time stands still,<br/>
+I miss you more, I always will.<br/>
+I hope one day, you will miss me too,<br/>
+And find your way back, like I want you to.`,
+              author: "Bezuban",
+            },
+            {
+              title: "Junoon Ka Aisa Aalam",
+              text: `Dilkashi se hui shuruaat, ek nazar mein kho gaye, <br/> Unss ki baarish mein bheege, har lamha Mohabbat ho gaye. <br><br>
+
+Mohabbat ne rukh badla, ab Aqeedat ki raah chali, <br/>Ibadat ban gaya har ehsaas, har saans mein tera naam basi. <br><br>
+
+Junoon ka aisa aalam, khud se begaane ho gaye,<br/> Maut bhi muskura uthi, jab tujhmein fana ho gaye.`,
+              author: "Bezuban",
+            },
+            {
+              title: "Fading Footsteps",
+              text: `The paths we walked now stand so still,
+The echoes lost against my will.
+Each step we took, so full of light,
+Now fades into the endless night.`,
+              author: "Bezuban",
+            },
+            {
+              title: "A Love Unsaid",
+              text: `The words I never dared to tell,
+Still linger where my heart once fell.
+If time could give a second chance,
+I'd weave them into one last dance.`,
+              author: "Bezuban",
+            },
+            {
+              title: "Echoes of You",
+              text: `The stars above still spell your name,
+Though time has blurred the burning flame.
+I trace the sky and wish you knew,
+That every echo leads to you.`,
+              author: "Bezuban",
+            },
+          ];
+
+          document.write(
+            poems
+              .map(
+                (poem) => `
+                    <article class="poem-card rounded-lg shadow-md" data-aos="fade-up">
+                        <h2 class="poem-title">${poem.title}</h2><br>
+                        <p class="poem-text">${poem.text}</p>
+                        <p class="poem-author">- ${poem.author}</p>
+                    </article>
+                `
+              )
+              .join("")
+          );
+        </script>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">Created by Sai Pranay Tadakamalla</footer>
+
+    <script>
+      AOS.init({ duration: 800, offset: 100, once: true });
+    </script>
+  </body>
+</html>
