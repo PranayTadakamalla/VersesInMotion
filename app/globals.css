@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Dark Romantic Color Palette */
+  --background: 13, 13, 20;
+  --foreground: 220, 215, 205;
+  --primary: 180, 140, 100;
+  --primary-dark: 120, 85, 50;
+  --secondary: 40, 20, 50;
+  --accent: 200, 160, 120;
+  --muted: 80, 80, 100;
+  --muted-foreground: 140, 135, 130;
+  --border: 50, 40, 60;
+  --ring: 180, 140, 100;
+
+  /* Dark Romantic tokens */
+  --charcoal: 20, 20, 25;
+  --deep-black: 13, 13, 20;
+  --gold: 180, 140, 100;
+  --burgundy: 100, 40, 80;
+  --plum: 60, 30, 70;
+  --cream: 220, 215, 205;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  min-height: 100vh;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .bg-background {
+    @apply bg-stone-950;
+  }
+
+  .bg-foreground {
+    @apply bg-stone-100;
+  }
+
+  .text-primary {
+    @apply text-amber-700;
+  }
+
+  .text-accent {
+    @apply text-stone-400;
+  }
+
+  .border-ring {
+    @apply border-amber-700/30;
+  }
+
+  /* Gradient effects */
+  .gradient-romantic {
+    @apply bg-gradient-to-r from-amber-800 via-amber-700 to-amber-900;
+  }
+
+  .gradient-moonlight {
+    @apply bg-gradient-to-b from-stone-900 via-stone-950 to-stone-950;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  /* Smooth transitions */
+  .smooth-transition {
+    @apply transition-all duration-300 ease-out;
+  }
+}
