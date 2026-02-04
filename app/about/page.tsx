@@ -33,6 +33,14 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="max-w-7xl mx-auto text-center relative z-10"
         >
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.05 }}
+            className="text-sm text-amber-700/60 mb-4 italic tracking-widest uppercase"
+          >
+            The Story Within
+          </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -45,9 +53,9 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-stone-400 max-w-2xl mx-auto"
+            className="text-xl text-stone-400 max-w-2xl mx-auto italic leading-relaxed"
           >
-            A sanctuary of romantic poetry where emotions bloom and hearts connect
+            Not just poetry. A place where hearts learn their own language.
           </motion.p>
         </motion.div>
       </section>

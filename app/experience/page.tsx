@@ -1,45 +1,51 @@
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
 
-const allPoems = {
-  "Love & Admiration": [
-    {
-      id: 1,
-      title: "She Shines",
-      content: `She shines like the moon, so bright and fair,
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import PoemCard from "@/components/PoemCard";
+
+const categorizedPoems = {
+  English: {
+    "Love & Admiration": [
+      {
+        id: 1,
+        title: "She Shines",
+        content: `She shines like the moon, so bright and fair,
 her voice is like a melody, floating in the air,
 her fragrance is like flowers in full bloom,
-every smile of hers lights up the room,
-without her, my world feels tight and small,
-with her presence, I feel I have it all,
-her laughter, so sweet, fills my heart with cheer,
+every smile of hers lights up the room.
+
+Without her, my world feels tight and small,
+With her presence, I feel I have it all.
+Her laughter, so sweet, fills my heart with cheer,
 In her smile, my happiness is always near.
 
 She is a beauty like none before,
-a symphony of grace, forevermore,
-her voice, a melody, soft and true,
-echoes in my heart, a love that grew,
-each sorrow she carries, a whisper of pain,
-yet in her embrace, I find peace again.
+A symphony of grace, forevermore.
+Her voice, a melody, soft and true,
+Echoes in my heart, a love that grew.
 
+Each sorrow she carries, a whisper of pain,
+Yet in her embrace, I find peace again.
 Her smile, a beacon and a guiding light,
-gives purpose to my days, and makes them bright,
-her energy flows, a wave so serene,
-her presence, a calm like I've never seen,
-her eyes, like stars, in the darkest night,
-sparkle with love, a radiant light,
-her gaze, a caress, tender and sweet,
-a touch that makes my world complete,
-her love fills my heart with endless grace,
-a unique tenderness, none can replace.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "English",
-    },
-    {
-      id: 2,
-      title: "Thousands See Her",
-      content: `Thousands see her, yet none perceive,
+Gives purpose to my days, and makes them bright.
+
+Her energy flows, a wave so serene,
+Her presence, a calm like I've never seen.
+Her eyes, like stars, in the darkest night,
+Sparkle with love, a radiant light.
+
+Her gaze, a caress, tender and sweet,
+A touch that makes my world complete.
+Her love fills my heart with endless grace,
+A unique tenderness, none can replace.`,
+        author: "Sai Pranay Tadakamalla",
+        language: "English",
+      },
+      {
+        id: 2,
+        title: "Thousands See Her",
+        content: `Thousands see her, yet none perceive,
 The way her presence makes me believe.
 To them, she's just a fleeting sight,
 To me, she's the sun, the stars, the night.
@@ -56,13 +62,13 @@ She fills the silence with whispered dreams.
 
 A thousand hearts may see her beauty true,
 But none will ever feel what I feel for you.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "English",
-    },
-    {
-      id: 3,
-      title: "It Began with a Glance",
-      content: `It began with a glance so rare,
+        author: "Sai Pranay Tadakamalla",
+        language: "English",
+      },
+      {
+        id: 3,
+        title: "It Began with a Glance",
+        content: `It began with a glance so rare,
 A spark of charm hung in the air.
 In whispers soft, the rains did fall,
 And love embraced us—heart and all.
@@ -79,15 +85,15 @@ Nothing would ever be the same.
 
 What started as a fleeting sight,
 Became my guiding star, my light.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "English",
-    },
-  ],
-  "Longing & Separation": [
-    {
-      id: 4,
-      title: "In Her Eyes",
-      content: `In her eyes, I saw the sky so bright,
+        author: "Sai Pranay Tadakamalla",
+        language: "English",
+      },
+    ],
+    "Longing & Separation": [
+      {
+        id: 4,
+        title: "In Her Eyes",
+        content: `In her eyes, I saw the sky so bright,
 Her voice was soft, a sweet delight.
 Her hair flowed gently, dark as night,
 A smile so warm, it felt just right.
@@ -98,323 +104,387 @@ Every time she spoke, my heart would explode,
 I wished it never ended, in that moment, I glowed.
 
 She was sweet, caring, like a soft embrace,
-But fierce like a tiger, with elegant grace.
-Her kindness ran deep, her strength so true,
-Every moment with her felt like a dream come through.
+Though the love I felt, she never could trace.
+For unspoken feelings, deep and true,
+Were the things I wished she only knew.`,
+        author: "Sai Pranay Tadakamalla",
+        language: "English",
+      },
+      {
+        id: 5,
+        title: "Alone I Stand",
+        content: `Alone I stand, with heart in hand,
+Hoping someone will understand.
+A quiet soul, a silent plea,
+To see the real side of me.
 
-I thought she was the one, but destiny had other plans,
-Our paths diverged, as life slipped through my hands.
-Though the love was deep, fate chose a different way,
-I'll cherish her always, though she couldn't stay.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "English",
-    },
-    {
-      id: 5,
-      title: "She Stood Like The Sun",
-      content: `She stood like the sun, steady and bright,
-While I, a dreamer, lost in my night.
-Her words were simple, her heart was kind,
-But I wove stories within my mind.
+In crowds of many, I feel so lost,
+The price of solitude, that I paid the cost.
+Looking for a soul who cares so deep,
+Someone to hold me, to make me weep.
 
-She offered friendship, a bond so pure,
-Yet I dreamed of a life, of something more.
-Her laughter, her presence, a gentle breeze,
-But I chased horizons she'd never tease.
+With joy, not sorrow, but from the core,
+Someone who will love me forevermore.
+A companion, a friend, a soulmate true,
+Someone to turn my grey skies blue.
 
-She is greatness, a light untamed,
-While I'm the fool who wrongly framed.
-For in her kindness, no fault to find,
-It was my overthinking that blurred the line.
+Until that day, I'll wait and see,
+If someone's out there meant for me.`,
+        author: "Sai Pranay Tadakamalla",
+        language: "English",
+      },
+    ],
+  },
+  Hindi: {
+    "उत्सर्ग और प्रेम (Devotion & Love)": [
+      {
+        id: 6,
+        title: "Dilkashi Se Hui Shuruaat",
+        content: `दिलकशी से हुई शुरुआत, एक नज़र में खो गए,
+उनकी बारिश में भीगे, हर लम्हा मोहब्बत हो गए।
+मोहब्बत ने रुख बदला, अब अकीदत की राह चली।
+जो रिश्ता कल का सपना था, आज हकीकत हो गई।`,
+        author: "Sai Pranay Tadakamalla",
+        language: "Hindi",
+      },
+      {
+        id: 7,
+        title: "Zamana Chod Diya",
+        content: `ज़माना छोड़ दिया मेरा साथ,
+शाम-ए-ग़म ने दिया मुझे हाथ।
+क़िस्मत यूँ बदल गई मेरी,
+जब देखी मैंने चेहरा तेरी।
 
-So here I stand, humbled, wishing her joy, her path alight.
-For though I stumbled, I now see clear,
-Her friendship's gift is what I hold dear.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "English",
-    },
-    {
-      id: 6,
-      title: "I Count the Stars",
-      content: `I count the stars, one by one,
-The night is long, but sleep won't come.
-I close my eyes, but all I see,
-Are memories of you and me.
+तेरी मुस्कुराहट ने सदा सुनाई,
+तेरे प्यार में हर रात लगाई।
+तेरी याद में रातें हों बिताई,
+तेरी ख़ुशी ही मेरी ख़ुशी आई।`,
+        author: "Sai Pranay Tadakamalla",
+        language: "Hindi",
+      },
+      {
+        id: 8,
+        title: "Woh Chaandni Thi",
+        content: `वह चाँदनी थी, जो मेरी ज़िंदगी में रोशनी लाई,
+और मैं एक था जो उनके ख्वाब लेकर रह गया।
+उसने दोस्ती के अरमान लेकर दिल में बस गई,
+और मैंने उसका मोहब्बत का जहान खुद में बसाया।
 
-I miss your voice, I miss your smile,
-I wish you'd stay, just for a while.
-My heart feels lost, my world is blue,
-I don't know how to live without you.
+हर पल उसके साथ एक ख्वाब था,
+हर बात उसकी ज़िंदगी का खिताब था।
+पर क़िस्मत ने कुछ और ही सोचा था,
+और वह दूर चली गई, पर दिल में रह गई।`,
+        author: "Sai Pranay Tadakamalla",
+        language: "Hindi",
+      },
+    ],
+    "मिलन और मनोकामना (Longing & Dreams)": [
+      {
+        id: 9,
+        title: "Milo Ya Na Milo",
+        content: `मिलो या न मिलो तुम मेरे दिल में हमेशा बस जाओगे,
+मेरी हर ख़ुशी और हर गम में तुम्ही रहोगे।
+तुम्हारी यादों में मैं रात भर जागता हूँ,
+और तुम्हारी ख़ुशी की ख़ातिर सब कुछ भूल जाता हूँ।
 
-The night goes on, but time stands still,
-I miss you more, I always will.
-I hope one day, you will miss me too,
-And find your way back, like I want you to.
+तुम्हारी मुस्कुराहट ही मेरी ज़िंदगी है,
+तुम्हारी गर्मा गर्मी में ही मेरी क़िस्मत है।
+मिलो या न मिलो, पर मेरे साथ हमेशा रहना,
+क्योंकि तुम मेरी साँसों में, मेरी हर धड़कन में हो।`,
+        author: "Sai Pranay Tadakamalla",
+        language: "Hindi",
+      },
+      {
+        id: 10,
+        title: "Jo Socha Tha",
+        content: `जो सोचा था, वो बन न सका,
+जो चाहा था, वो पास न रहा।
+हर राह में बस अँधेरा मिला,
+धड़कन में एक तन्हा सवेरा मिला।
 
-In the darkness, you're my guiding star,
-No matter how close or how far.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "English",
-    },
-  ],
-  "Inner Darkness & Healing": [
-    {
-      id: 7,
-      title: "I Was in Darkness",
-      content: `I was in darkness, wanted to be alone,
-But by your light, a warmth was shown.
-You're the glow that broke my endless night,
-In your embrace, the world felt right.
+तुम्हारी राह में सब कुछ खोया,
+पर तुम्हारी यादों में सब कुछ पाया।
+तुम्हारे बिना ज़िंदगी सूनी है,
+पर तुम्हारे साथ ज़िंदगी पूरी है।
 
-If it's meant to be, let it drift with the stream,
-But I'll not leave you to chase a dream.
-You're a melody sweet, that the silence restores,
-I'm the broken tune that everyone ignores.
+इस साहिल पर अकेले खड़े हैं,
+तुम्हारी आहट का इंतेज़ार हैं।
+जब तक तुम न आओ, यह दिल न रुकेगा,
+तुम्हारे आने का ख़्वाब न टूटेगा।`,
+        author: "Sai Pranay Tadakamalla",
+        language: "Hindi",
+      },
+      {
+        id: 11,
+        title: "Mere Intezaar Ka Diya",
+        content: `न चाँद का छाँव मिला, न सूरज की धूप मिली,
+मैं तो बस सँझ की हल्की रोशनी में तेरा इंतेज़ार किए बैठा हूँ।
+मैंने तेरा इंतेज़ार किया है, कर रहा हूँ और कर्ता रहूँगा,
+चाहे तू आए या न आए, मेरे इंतेज़ार का दिया यूँही जलता रहेगा।
 
-You're the warmth that shatters the winter's chill,
-And I'm the shadow that hides and stays still.
-
-Yet in your presence, I find my way,
-You give me courage to face the day.
-In the shadows where I dwelled so long,
-You've made me believe I can be strong.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "English",
-    },
-    {
-      id: 8,
-      title: "Rain or Sky",
-      content: `Rain or sky, don't let a day slip by,
-Keep moving forward, reach for what's high.
-Through every challenge, through every fight,
-Push ahead—chase and embrace the light.
-
-When clouds hang low and the world feels slow,
-Rise above, let your spirit glow.
-No day is wasted, no time stands still,
-Keep climbing higher and trust your will.
-
-When shadows linger and winds grow strong,
-Stand your ground for you've been brave all along.
-No time is lost, no dream will fade,
-Rise with courage and be unafraid.
-
-The rain will pass and the sun will shine,
-Your strength is greater than you realize, it's fine.
-So keep on going, reach for the height,
-For rain or sky, never let a day slip by.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "English",
-    },
-  ],
-  "Hindi Poetry - प्यार और भावनाएं": [
-    {
-      id: 9,
-      title: "Dilkashi Se Hui Shuruaat",
-      content: `Dilkashi se hui shuruaat, ek nazar mein kho gaye,
-Unss ki baarish mein bheege, har lamha Mohabbat ho gaye.
-Mohabbat ne rukh badla, ab Aqeedat ki raah chali,
-Har pal unke sath bitana, ab mera acha waqt ban gali.
-
-Unke sath rahe khatir se, har din aaj ban gaya,
-Unka sath mere dil se, kabhi dur na ho paya.
-Har baat unki ek khushi hai, mere dil ko sukoon deti,
-Unka hansa mera jeewan, unka pyar meri beti.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "Hindi",
-    },
-    {
-      id: 10,
-      title: "Zamana Chod Diya",
-      content: `Zamana chod diya mera saath,
-Shaam-e-ghum ne diya mujhe haath.
-Qismat yun badal gayi meri,
-Jab dekhi maine chehra teri.
-
-Zindagi badal gai har pal,
-Unka pyar mera final.
-Duniya bhool gayi main ab,
-Bas unka hi kaam mere nab.
-
-Khushi ne mujhe pakda hath se,
-Dard bhi aa kabhi saath se.
-Lekin unke bin dar se na main,
-Unhe chod nahi sakta main.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "Hindi",
-    },
-    {
-      id: 11,
-      title: "Woh Chaandni Thi",
-      content: `Woh chaandni thi, jo mere zindagi mai roshni laayi,
-Aur main ek tha jo unke khwab lekar reh gaya.
-Usne dosti ke armaan lekar dil mein bas gayi,
-Aur maine uska mohabbat ka jahan khudme basaya.
-
-Har pal unka saath sukhad, har pal khush tha main,
-Unke liye hi jee raha tha, unka hi pyar tha meri jaan.
-Lekin qismat ko kuch aur hi rukh bade the,
-Unka jaana mere dil mein ek daag bade the.
-
-Ab bhi unhe dekh kar mera dil tez dharkta hai,
-Unke bin zindagi meri bas ek udesi baat hai.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "Hindi",
-    },
-  ],
-  "Reflection & Philosophy": [
-    {
-      id: 12,
-      title: "The Pursuit",
-      content: `We chase the horizon, forever seeking the new,
-Never satisfied with the beauty we're viewing.
-The grass always greens on the other side,
-Though we've never truly looked where we reside.
-
-What if the answer was never far away?
-What if the treasure was here, come what may?
-We run through life with our eyes fixed high,
-Missing the miracles that quietly pass by.
-
-In the search for something grand and great,
-We miss the small moments that seal our fate.
-A kind word spoken, a hand held true,
-These are the riches that see us through.
-
-So pause and reflect on what truly matters,
-Before all your moments scatter like shatters.`,
-      author: "Sai Pranay Tadakamalla",
-      language: "English",
-    },
-  ],
+तेरे आने की बाट जोहता हूँ हर पल,
+तेरी यादों में बिताता हूँ हर लम्हा, हर पल।
+हज़ार बार हार मान लेता हूँ, पर फिर से उठ जाता हूँ,
+क्योंकि तुम ही मेरी ज़िंदगी हो, तुम ही मेरी मुराद हो।`,
+        author: "Sai Pranay Tadakamalla",
+        language: "Hindi",
+      },
+    ],
+  },
 };
 
 export default function Experience() {
-  const [selectedCategory, setSelectedCategory] = useState(
-    "Love & Admiration"
-  );
+  const [activeLanguage, setActiveLanguage] = useState("English");
+  const [expandedCategory, setExpandedCategory] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
 
-  const categories = Object.keys(allPoems);
-  const poems = allPoems[selectedCategory as keyof typeof allPoems] || [];
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setMousePosition({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        });
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const currentLanguagePoems = categorizedPoems[activeLanguage];
+  const categoryKeys = Object.keys(currentLanguagePoems);
+
+  const microcopyPhrases = {
+    English: {
+      intro: "Drift through moments of love, written and whispered.",
+      expandHint: "Pause here to discover what awaits within...",
+      categoryTitle: "A collection breathing with",
+    },
+    Hindi: {
+      intro: "प्रेम के पल जो लिखे गए और फुसफुसाए गए।",
+      expandHint: "यहाँ ठहरो, जो अंदर सोया है उसे जानो।",
+      categoryTitle: "एक संग्रह जो धड़कती है",
+    },
+  };
+
+  const currentMicrocopy = microcopyPhrases[activeLanguage];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-stone-950 to-black">
-      {/* Hero Section */}
-      <section className="relative w-full px-4 md:px-8 py-20 text-center border-b border-amber-900/30">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-6xl md:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-yellow-700 to-amber-800">
-            Experience the Poetry
+    <div ref={containerRef} className="relative min-h-screen bg-black overflow-hidden">
+      {/* Animated ambient background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <motion.div
+          animate={{
+            opacity: [0.05, 0.15, 0.08],
+            scale: [1, 1.15, 1.05],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-900/15 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            opacity: [0.03, 0.12, 0.06],
+            scale: [1, 1.1, 1.02],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+          className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-yellow-900/10 rounded-full blur-3xl"
+        />
+      </div>
+
+      {/* Cursor-following light effect */}
+      <motion.div
+        className="fixed w-48 h-48 rounded-full bg-gradient-to-r from-amber-900/5 to-yellow-900/5 blur-3xl pointer-events-none"
+        animate={{
+          x: mousePosition.x - 96,
+          y: mousePosition.y - 96,
+        }}
+        transition={{ type: "spring", stiffness: 200, damping: 30 }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-yellow-700 to-amber-800">
+            Experience
           </h1>
-          <p className="text-xl text-stone-400 mb-2">
-            Dive deep into verses that touch the soul
-          </p>
-          <p className="text-stone-500">
-            Every poem a journey, every word a heartbeat
-          </p>
-        </div>
-      </section>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-lg text-stone-400 italic max-w-2xl mx-auto leading-relaxed"
+          >
+            {currentMicrocopy.intro}
+          </motion.p>
+        </motion.div>
 
-      {/* Category Filter */}
-      <section className="sticky top-20 z-40 bg-black/80 backdrop-blur-md border-b border-amber-900/20 py-6 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap gap-3 justify-center">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-5 py-2 rounded-full font-semibold transition-all duration-300 ${
-                  selectedCategory === category
-                    ? "bg-gradient-to-r from-amber-800 to-yellow-800 text-stone-100 shadow-lg shadow-amber-700/50"
-                    : "bg-stone-900 text-stone-400 hover:bg-stone-800 border border-amber-900/30"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* Language Selector */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="flex justify-center gap-4 md:gap-8 mb-16"
+        >
+          {["English", "Hindi"].map((lang) => (
+            <motion.button
+              key={lang}
+              onClick={() => {
+                setActiveLanguage(lang);
+                setExpandedCategory(null);
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`relative px-8 py-3 rounded-full font-semibold transition-all duration-500 ${
+                activeLanguage === lang
+                  ? "text-stone-100"
+                  : "text-stone-500 hover:text-stone-400"
+              }`}
+            >
+              {activeLanguage === lang && (
+                <motion.div
+                  layoutId="activeLanguage"
+                  className="absolute inset-0 bg-gradient-to-r from-amber-800 to-yellow-800 rounded-full"
+                  transition={{ type: "spring", stiffness: 380, damping: 40 }}
+                />
+              )}
+              <span className="relative z-10">{lang}</span>
+            </motion.button>
+          ))}
+        </motion.div>
 
-      {/* Poems Grid */}
-      <section className="relative w-full px-4 md:px-8 py-24 bg-gradient-to-b from-black via-stone-950 to-black overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <motion.div
-            animate={{
-              opacity: [0.05, 0.15, 0.05],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-amber-900/10 rounded-full blur-3xl"
-          />
-        </div>
+        {/* Categories Section */}
+        <div className="space-y-8">
+          {categoryKeys.map((category, idx) => {
+            const isExpanded = expandedCategory === category;
+            const poemsInCategory = currentLanguagePoems[category];
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {poems.map((poem, idx) => (
+            return (
               <motion.div
-                key={poem.id}
-                className="group relative h-full"
+                key={category}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: (idx % 2) * 0.2,
-                  ease: "easeOut",
-                }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: idx * 0.15 }}
               >
-                {/* Card */}
-                <div className="relative w-full h-full bg-gradient-to-br from-stone-900 to-black rounded-xl p-8 overflow-hidden border border-amber-900/30 hover:border-amber-700/60 transition-all duration-300 shadow-2xl hover:shadow-amber-700/20">
-                  {/* Decorative corner */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-amber-700/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Category Header - Interactive */}
+                <motion.button
+                  onClick={() =>
+                    setExpandedCategory(isExpanded ? null : category)
+                  }
+                  className="w-full relative group"
+                  whileHover={{ x: 5 }}
+                >
+                  <motion.div
+                    className="absolute -inset-4 bg-gradient-to-r from-amber-900/20 to-yellow-900/20 rounded-2xl blur opacity-0 group-hover:opacity-100"
+                    transition={{ duration: 0.4 }}
+                  />
 
-                  {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col">
-                    {/* Header */}
-                    <div className="mb-4">
-                      <h3 className="text-2xl md:text-3xl font-bold text-amber-700 mb-2 group-hover:text-amber-600 transition-colors">
-                        {poem.title}
-                      </h3>
-                      <div className="w-12 h-1 bg-gradient-to-r from-amber-700 to-yellow-700 group-hover:w-20 transition-all duration-300"></div>
+                  <div className="relative bg-gradient-to-r from-stone-900/30 via-black/50 to-stone-950/30 backdrop-blur-sm border border-amber-900/30 group-hover:border-amber-700/50 rounded-2xl p-6 md:p-8 transition-all duration-500">
+                    <div className="flex items-center justify-between">
+                      <div className="text-left">
+                        <p className="text-sm text-stone-500 mb-2 italic">
+                          {currentMicrocopy.categoryTitle}
+                        </p>
+                        <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-yellow-700 group-hover:from-amber-600 group-hover:to-yellow-600 transition-all">
+                          {category}
+                        </h2>
+                        <p className="text-sm text-stone-500 mt-2">
+                          {poemsInCategory.length} verse
+                          {poemsInCategory.length !== 1 ? "s" : ""}
+                        </p>
+                      </div>
+
+                      <motion.div
+                        animate={{ rotate: isExpanded ? 180 : 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="flex-shrink-0"
+                      >
+                        <svg
+                          className="w-6 h-6 md:w-8 md:h-8 text-amber-700"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                          />
+                        </svg>
+                      </motion.div>
                     </div>
 
-                    {/* Poem Content */}
-                    <div className="flex-1 overflow-y-auto pr-2 mb-4">
-                      <p className="text-stone-300 leading-relaxed whitespace-pre-wrap text-sm md:text-base">
-                        {poem.content}
-                      </p>
-                    </div>
-
-                    {/* Author Info - Always visible */}
-                    <div className="border-t border-amber-900/20 pt-4 mt-4">
-                      <p className="text-amber-600 font-semibold text-lg">
-                        {poem.author}
-                      </p>
-                      <p className="text-stone-500 text-sm">
-                        {poem.language}
-                      </p>
-                    </div>
+                    {!isExpanded && (
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-xs text-stone-600 mt-4 italic"
+                      >
+                        {currentMicrocopy.expandHint}
+                      </motion.p>
+                    )}
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                </motion.button>
 
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+                {/* Expanded Poems */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        {poemsInCategory.map((poem, poemIdx) => (
+                          <motion.div
+                            key={poem.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                              duration: 0.5,
+                              delay: poemIdx * 0.1,
+                            }}
+                          >
+                            <PoemCard {...poem} />
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Ambient guidance text */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="text-center mt-20 md:mt-28"
+        >
+          <p className="text-stone-600 italic text-sm md:text-base">
+            Each verse breathes with intention. Move slowly through them.
+          </p>
+        </motion.div>
+      </div>
     </div>
   );
 }
