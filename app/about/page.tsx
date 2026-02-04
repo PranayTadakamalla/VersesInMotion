@@ -3,8 +3,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { usePresence } from "@/components/PresenceProvider";
+import { getMoodGradient } from "@/lib/moodColors";
 
 export default function About() {
+  const { mood, setLastVisitedPage } = usePresence();
+
+  useEffect(() => {
+    setLastVisitedPage("/about");
+  }, [setLastVisitedPage]);
   const sectionVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -15,9 +23,9 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className={`min-h-screen ${getMoodGradient(mood)} transition-all duration-3000`}>
       {/* Hero Section */}
-      <section className="relative w-full py-24 px-4 md:px-8 bg-gradient-to-b from-black via-stone-950 to-black border-b border-amber-900/20 overflow-hidden">
+      <section className={`relative w-full py-24 px-4 md:px-8 ${getMoodGradient(mood)} border-b border-amber-900/20 overflow-hidden transition-all duration-3000`}>
         {/* Ambient glow */}
         <div className="absolute inset-0 pointer-events-none">
           <motion.div
@@ -61,7 +69,7 @@ export default function About() {
       </section>
 
       {/* Main Content */}
-      <section className="relative w-full px-4 md:px-8 py-24 bg-gradient-to-b from-black via-stone-950 to-black overflow-hidden">
+      <section className={`relative w-full px-4 md:px-8 py-24 ${getMoodGradient(mood)} overflow-hidden transition-all duration-3000`}>
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Text Content */}
@@ -183,7 +191,7 @@ export default function About() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative w-full px-4 md:px-8 py-24 bg-gradient-to-b from-stone-950 via-black to-black overflow-hidden">
+      <section className={`relative w-full px-4 md:px-8 py-24 ${getMoodGradient(mood)} overflow-hidden transition-all duration-3000`}>
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0 }}

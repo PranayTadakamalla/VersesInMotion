@@ -56,16 +56,16 @@ export default function Footer() {
             </p>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Journey */}
           <motion.div variants={itemVariants}>
             <h4 className="text-lg font-semibold text-amber-700 mb-4">
-              Quick Links
+              Journey
             </h4>
             <ul className="space-y-3">
               {[
-                { href: "/", label: "Home" },
-                { href: "/experience", label: "Experience" },
-                { href: "/about", label: "About" },
+                { href: "/", label: "Begin" },
+                { href: "/experience", label: "Wander" },
+                { href: "/about", label: "Discover" },
               ].map((link) => (
                 <motion.li
                   key={link.href}
@@ -121,9 +121,9 @@ export default function Footer() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center text-stone-400 text-sm"
+            className="text-center text-stone-400 text-sm italic"
           >
-            Created with passion by{" "}
+            By{" "}
             <span className="text-amber-700 font-semibold">
               Sai Pranay Tadakamalla
             </span>
@@ -134,7 +134,7 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center text-stone-500 text-xs mt-3"
           >
-            © 2024 Verses In Motion. All rights reserved.
+            This moment is sacred.
           </motion.p>
         </motion.div>
       </div>

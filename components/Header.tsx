@@ -25,9 +25,9 @@ export default function Header() {
         {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-8">
           {[
-            { href: "/", label: "Home" },
-            { href: "/experience", label: "Experience" },
-            { href: "/about", label: "About" },
+            { href: "/", label: "Home", subtitle: "Begin" },
+            { href: "/experience", label: "Wander", subtitle: "Explore" },
+            { href: "/about", label: "Story", subtitle: "Discover" },
           ].map((item, idx) => (
             <motion.li
               key={item.href}

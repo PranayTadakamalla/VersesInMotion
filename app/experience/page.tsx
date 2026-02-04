@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PoemCard from "@/components/PoemCard";
+import { usePresence } from "@/components/PresenceProvider";
+import { getMoodGradient } from "@/lib/moodColors";
 
 const categorizedPoems = {
   English: {
@@ -272,8 +274,17 @@ export default function Experience() {
 
   const currentMicrocopy = microcopyPhrases[activeLanguage];
 
+  const { mood, setLastVisitedPage } = usePresence();
+
+  useEffect(() => {
+    setLastVisitedPage("/experience");
+  }, [setLastVisitedPage]);
+
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-black overflow-hidden">
+    <div
+      ref={containerRef}
+      className={`relative min-h-screen ${getMoodGradient(mood)} overflow-hidden transition-all duration-3000`}
+    >
       {/* Animated ambient background */}
       <div className="fixed inset-0 pointer-events-none">
         <motion.div

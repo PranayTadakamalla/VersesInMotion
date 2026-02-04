@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import LoadingRitual from "@/components/LoadingRitual";
+import RareMoment from "@/components/RareMoment";
+import { PresenceProvider } from "@/components/PresenceProvider";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -30,9 +33,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="bg-black text-stone-100 min-h-screen flex flex-col overflow-x-hidden">
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <PresenceProvider>
+          <LoadingRitual />
+          <RareMoment />
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </PresenceProvider>
       </body>
     </html>
   );
