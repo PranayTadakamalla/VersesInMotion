@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const allPoems = {
   "Love & Admiration": [
@@ -335,15 +336,32 @@ export default function Experience() {
       </section>
 
       {/* Poems Grid */}
-      <section className="w-full px-4 md:px-8 py-20">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative w-full px-4 md:px-8 py-24 bg-gradient-to-b from-black via-stone-950 to-black overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div
+            animate={{
+              opacity: [0.05, 0.15, 0.05],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ duration: 10, repeat: Infinity }}
+            className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-amber-900/10 rounded-full blur-3xl"
+          />
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {poems.map((poem, idx) => (
-              <div
+              <motion.div
                 key={poem.id}
                 className="group relative h-full"
-                style={{
-                  animation: `fadeIn 0.6s ease-out ${idx * 0.1}s both`,
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: (idx % 2) * 0.2,
+                  ease: "easeOut",
                 }}
               >
                 {/* Card */}
@@ -379,7 +397,7 @@ export default function Experience() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
