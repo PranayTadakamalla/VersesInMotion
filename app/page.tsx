@@ -110,33 +110,24 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-center mt-20"
         >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-block"
-          >
-            <Link
-              href="/experience"
-              className="relative px-10 py-4 text-lg font-semibold text-stone-100 overflow-hidden group rounded-full"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-block"
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-amber-800 to-yellow-800 rounded-full"
-                animate={{
-                  opacity: [0.8, 1, 0.8],
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-              <span className="relative flex items-center gap-3">
+              <Link
+                href="/experience"
+                className="px-8 py-3 text-base font-semibold text-amber-100 border border-amber-700/50 rounded-lg hover:border-amber-600 hover:text-amber-50 transition-all duration-300 flex items-center gap-2"
+              >
                 <span>Wander Through Verses</span>
                 <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 2.5, repeat: Infinity }}
                 >
                   →
                 </motion.span>
-              </span>
-            </Link>
-          </motion.div>
+              </Link>
+            </motion.div>
         </motion.div>
       </section>
     </div>
