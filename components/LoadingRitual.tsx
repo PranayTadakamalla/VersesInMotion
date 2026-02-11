@@ -35,7 +35,8 @@ const quotes = [
 ];
 
 export default function LoadingRitual() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
   const [quote, setQuote] = useState(quotes[0]);
 
   useEffect(() => {
@@ -45,36 +46,49 @@ export default function LoadingRitual() {
       setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
       setIsVisible(true);
 
-      // Exit after 6.5 seconds
-      const exitTimer = setTimeout(() => {
+      // Start exit animation after 5.5 seconds
+      const exitAnimTimer = setTimeout(() => {
+        setIsExiting(true);
+      }, 5500);
+
+      // Fully hide after animation completes
+      const fullExitTimer = setTimeout(() => {
         setIsVisible(false);
         sessionStorage.setItem("versesLoaded", "true");
-      }, 6500);
+      }, 6800);
 
-      return () => clearTimeout(exitTimer);
+      return () => {
+        clearTimeout(exitAnimTimer);
+        clearTimeout(fullExitTimer);
+      };
+    } else {
+      setIsVisible(false);
     }
   }, []);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
           initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-50 bg-gradient-to-b from-black via-stone-950 to-black overflow-hidden flex items-center justify-center"
+          transition={{ duration: 1.3, ease: "easeInOut", delay: isExiting ? 0 : 0 }}
+          className="fixed inset-0 z-[9999] bg-gradient-to-b from-black via-stone-950 to-black overflow-hidden flex items-center justify-center pointer-events-auto"
         >
           {/* Animated gradient background */}
           <motion.div
             animate={{
-              background: [
-                "radial-gradient(ellipse at 20% 50%, rgba(180, 83, 9, 0.15) 0%, transparent 50%)",
-                "radial-gradient(ellipse at 80% 50%, rgba(217, 119, 6, 0.2) 0%, transparent 50%)",
-                "radial-gradient(ellipse at 50% 50%, rgba(180, 83, 9, 0.15) 0%, transparent 50%)",
-              ],
+              background: isExiting
+                ? "radial-gradient(ellipse at 50% 50%, rgba(180, 83, 9, 0.15) 0%, transparent 50%)"
+                : [
+                    "radial-gradient(ellipse at 20% 50%, rgba(180, 83, 9, 0.15) 0%, transparent 50%)",
+                    "radial-gradient(ellipse at 80% 50%, rgba(217, 119, 6, 0.2) 0%, transparent 50%)",
+                    "radial-gradient(ellipse at 50% 50%, rgba(180, 83, 9, 0.15) 0%, transparent 50%)",
+                  ],
             }}
             transition={{
-              duration: 6.5,
+              duration: isExiting ? 1.3 : 5.5,
               ease: "easeInOut",
             }}
             className="absolute inset-0"
@@ -83,12 +97,12 @@ export default function LoadingRitual() {
           {/* Large flowing orbs */}
           <motion.div
             animate={{
-              opacity: [0.08, 0.18, 0.08],
-              scale: [0.95, 1.25, 0.95],
-              x: [0, 50, 0],
+              opacity: isExiting ? 0 : [0.08, 0.18, 0.08],
+              scale: isExiting ? 1 : [0.95, 1.25, 0.95],
+              x: isExiting ? 0 : [0, 50, 0],
             }}
             transition={{
-              duration: 6.5,
+              duration: isExiting ? 1.3 : 5.5,
               ease: "easeInOut",
             }}
             className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-br from-amber-700/40 to-transparent blur-3xl"
@@ -96,14 +110,14 @@ export default function LoadingRitual() {
 
           <motion.div
             animate={{
-              opacity: [0.06, 0.15, 0.06],
-              scale: [0.9, 1.15, 0.9],
-              x: [0, -50, 0],
+              opacity: isExiting ? 0 : [0.06, 0.15, 0.06],
+              scale: isExiting ? 1 : [0.9, 1.15, 0.9],
+              x: isExiting ? 0 : [0, -50, 0],
             }}
             transition={{
-              duration: 7,
+              duration: isExiting ? 1.3 : 6,
               ease: "easeInOut",
-              delay: 0.5,
+              delay: isExiting ? 0 : 0.5,
             }}
             className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-gradient-to-tl from-yellow-800/30 to-transparent blur-3xl"
           />
@@ -113,16 +127,24 @@ export default function LoadingRitual() {
             {/* Top decorative element */}
             <motion.div
               initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 80, opacity: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
+              animate={{
+                width: isExiting ? 0 : 80,
+                opacity: isExiting ? 0 : 1,
+              }}
+              transition={{ duration: isExiting ? 0.8 : 1, ease: "easeOut" }}
               className="h-px bg-gradient-to-r from-transparent via-amber-700 to-transparent mb-16"
             />
 
             {/* Opening sparkle dots */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 1, 1, 0] }}
-              transition={{ duration: 0.8, times: [0, 0.2, 0.8, 1] }}
+              animate={{
+                opacity: isExiting ? 0 : [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: isExiting ? 0.5 : 0.8,
+                times: [0, 0.2, 0.8, 1],
+              }}
               className="flex gap-3 mb-12"
             >
               {[0, 1, 2].map((i) => (
@@ -136,8 +158,11 @@ export default function LoadingRitual() {
             {/* Quote text with character-by-character reveal effect */}
             <motion.blockquote
               initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+              animate={{
+                opacity: isExiting ? 0 : 1,
+                y: isExiting ? 20 : 0,
+              }}
+              transition={{ duration: isExiting ? 0.8 : 1.2, delay: isExiting ? 0 : 0.3, ease: "easeOut" }}
               className="mb-12"
             >
               <motion.p
@@ -174,18 +199,22 @@ export default function LoadingRitual() {
             {/* Author with subtle animation */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              animate={{
+                opacity: isExiting ? 0 : 1,
+                y: isExiting ? 5 : 0,
+              }}
+              transition={{ duration: isExiting ? 0.6 : 0.8, delay: isExiting ? 0 : 1 }}
               className="flex items-center gap-4 justify-center mb-16"
             >
               <motion.div
                 animate={{
-                  width: [0, 24, 24, 0],
+                  width: isExiting ? 0 : [0, 24, 24, 0],
+                  opacity: isExiting ? 0 : 1,
                 }}
                 transition={{
-                  duration: 4,
+                  duration: isExiting ? 0.6 : 4,
                   times: [0, 0.3, 0.7, 1],
-                  delay: 1.2,
+                  delay: isExiting ? 0 : 1.2,
                 }}
                 className="h-px bg-gradient-to-r from-amber-700 to-transparent"
               />
@@ -194,12 +223,13 @@ export default function LoadingRitual() {
               </cite>
               <motion.div
                 animate={{
-                  width: [0, 24, 24, 0],
+                  width: isExiting ? 0 : [0, 24, 24, 0],
+                  opacity: isExiting ? 0 : 1,
                 }}
                 transition={{
-                  duration: 4,
+                  duration: isExiting ? 0.6 : 4,
                   times: [0, 0.3, 0.7, 1],
-                  delay: 1.2,
+                  delay: isExiting ? 0 : 1.2,
                 }}
                 className="h-px bg-gradient-to-l from-amber-700 to-transparent"
               />
@@ -208,30 +238,41 @@ export default function LoadingRitual() {
             {/* Bottom decorative element */}
             <motion.div
               initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 80, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+              animate={{
+                width: isExiting ? 0 : 80,
+                opacity: isExiting ? 0 : 1,
+              }}
+              transition={{ duration: isExiting ? 0.8 : 1, delay: isExiting ? 0 : 0.8, ease: "easeOut" }}
               className="h-px bg-gradient-to-r from-transparent via-amber-700 to-transparent mb-12"
             />
 
             {/* Elegant loading indicator */}
-            <div className="flex gap-1.5">
+            <motion.div
+              animate={{
+                opacity: isExiting ? 0 : 1,
+              }}
+              transition={{
+                duration: isExiting ? 0.6 : 1,
+              }}
+              className="flex gap-1.5"
+            >
               {[0, 1, 2, 3, 4].map((i) => (
                 <motion.div
                   key={i}
                   animate={{
-                    height: ["0.375rem", "1rem", "0.375rem"],
-                    opacity: [0.4, 1, 0.4],
+                    height: isExiting ? "0.375rem" : ["0.375rem", "1rem", "0.375rem"],
+                    opacity: isExiting ? 0.3 : [0.4, 1, 0.4],
                   }}
                   transition={{
-                    duration: 1.2,
-                    delay: i * 0.15,
-                    repeat: Infinity,
-                    repeatType: "loop",
+                    duration: isExiting ? 0.6 : 1.2,
+                    delay: isExiting ? 0 : i * 0.15,
+                    repeat: isExiting ? 0 : Infinity,
+                    repeatType: isExiting ? undefined : "loop",
                   }}
                   className="w-0.5 bg-gradient-to-t from-amber-700 to-amber-600 rounded-full"
                 />
               ))}
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       )}

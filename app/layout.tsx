@@ -35,8 +35,8 @@ export default function RootLayout({
       <body className="bg-black text-stone-100 min-h-screen flex flex-col overflow-x-hidden">
         <PresenceProvider>
           <LoadingRitual />
-          <RareMoment />
           <Header />
+          <RareMoment />
           <main className="flex-grow">{children}</main>
           <Footer />
         </PresenceProvider>
