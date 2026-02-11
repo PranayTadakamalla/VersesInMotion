@@ -6,7 +6,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LoadingRitual from "@/components/LoadingRitual";
 import RareMoment from "@/components/RareMoment";
+import ScrollToTop from "@/components/ScrollToTop";
 import { PresenceProvider } from "@/components/PresenceProvider";
+import { FavoritesProvider } from "@/components/FavoritesProvider";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -34,11 +36,14 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="bg-black text-stone-100 min-h-screen flex flex-col overflow-x-hidden">
         <PresenceProvider>
-          <LoadingRitual />
-          <Header />
-          <RareMoment />
-          <main className="flex-grow">{children}</main>
-          <Footer />
+          <FavoritesProvider>
+            <LoadingRitual />
+            <Header />
+            <RareMoment />
+            <ScrollToTop />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </FavoritesProvider>
         </PresenceProvider>
       </body>
     </html>

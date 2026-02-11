@@ -27,6 +27,8 @@ export default function Header() {
           {[
             { href: "/", label: "Home", subtitle: "Begin" },
             { href: "/experience", label: "Wander", subtitle: "Explore" },
+            { href: "/collections", label: "Collections", subtitle: "Browse" },
+            { href: "/favorites", label: "Favorites", subtitle: "Saved" },
             { href: "/about", label: "Story", subtitle: "Discover" },
           ].map((item, idx) => (
             <motion.li

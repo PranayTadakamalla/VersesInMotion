@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import PoemCard from "@/components/PoemCard";
+import PoemCardEnhanced from "@/components/PoemCardEnhanced";
+import PoemCard from "@/components/PoemCard"; // Import PoemCard
 import { usePresence } from "@/components/PresenceProvider";
 import { getMoodGradient } from "@/lib/moodColors";
 
@@ -239,6 +240,8 @@ export default function Experience() {
   const [activeLanguage, setActiveLanguage] = useState("English");
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -258,6 +261,28 @@ export default function Experience() {
 
   const currentLanguagePoems = categorizedPoems[activeLanguage];
   const categoryKeys = Object.keys(currentLanguagePoems);
+
+  // Filter poems by search query
+  const filteredPoems = useMemo(() => {
+    const filtered = {};
+    Object.keys(currentLanguagePoems).forEach((category) => {
+      const categoryPoems = currentLanguagePoems[category];
+      const matches = categoryPoems.filter((poem) => {
+        const lowerQuery = searchQuery.toLowerCase();
+        return (
+          poem.title.toLowerCase().includes(lowerQuery) ||
+          poem.content.toLowerCase().includes(lowerQuery) ||
+          poem.author.toLowerCase().includes(lowerQuery)
+        );
+      });
+      if (matches.length > 0) {
+        filtered[category] = matches;
+      }
+    });
+    return filtered;
+  }, [currentLanguagePoems, searchQuery]);
+
+  const poemsToDisplay = searchQuery ? filteredPoems : currentLanguagePoems;
 
   const microcopyPhrases = {
     English: {
@@ -341,6 +366,27 @@ export default function Experience() {
           </motion.p>
         </motion.div>
 
+        {/* Search Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="mb-12"
+        >
+          <div className="relative max-w-2xl mx-auto">
+            <input
+              type="text"
+              placeholder="Search poems, authors, words..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-6 py-4 bg-black/50 border border-amber-900/30 rounded-full text-stone-200 placeholder-stone-500 focus:outline-none focus:border-amber-600 transition-colors shadow-lg"
+            />
+            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-stone-500">
+              🔍
+            </span>
+          </div>
+        </motion.div>
+
         {/* Language Selector */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -375,11 +421,27 @@ export default function Experience() {
           ))}
         </motion.div>
 
+        {/* Search Results Info */}
+        {searchQuery && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-sm text-amber-700/70 mb-12 text-center"
+          >
+            Found{" "}
+            {Object.values(filteredPoems).reduce(
+              (sum, poems) => sum + poems.length,
+              0
+            )}{" "}
+            poem{Object.values(filteredPoems).reduce((sum, poems) => sum + poems.length, 0) !== 1 ? "s" : ""}
+          </motion.p>
+        )}
+
         {/* Categories Section */}
         <div className="space-y-8">
-          {categoryKeys.map((category, idx) => {
+          {Object.keys(poemsToDisplay).map((category, idx) => {
             const isExpanded = expandedCategory === category;
-            const poemsInCategory = currentLanguagePoems[category];
+            const poemsInCategory = poemsToDisplay[category];
 
             return (
               <motion.div
@@ -472,7 +534,13 @@ export default function Experience() {
                               delay: poemIdx * 0.1,
                             }}
                           >
-                            <PoemCard {...poem} />
+                            <PoemCardEnhanced
+                              id={poem.id}
+                              title={poem.title}
+                              content={poem.content}
+                              author={poem.author}
+                              language={poem.language}
+                            />
                           </motion.div>
                         ))}
                       </div>
