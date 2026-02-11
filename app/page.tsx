@@ -2,7 +2,6 @@
 import Link from "next/link";
 import DynamicHero from "@/components/DynamicHero";
 import PoemCard from "@/components/PoemCard";
-import ContactNewsletter from "@/components/ContactNewsletter";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { usePresence } from "@/components/PresenceProvider";
@@ -130,27 +129,6 @@ export default function Home() {
               </Link>
             </motion.div>
         </motion.div>
-      </section>
-
-      {/* Newsletter and Contact Section */}
-      <section className={`relative w-full py-32 px-4 md:px-8 ${getMoodGradient(mood)} overflow-hidden transition-all duration-3000 border-t border-amber-900/20`}>
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-700 via-amber-600 to-yellow-700">
-              Stay Connected
-            </h2>
-            <p className="text-stone-400">
-              Join our community or send us your thoughts
-            </p>
-          </motion.div>
-          <ContactNewsletter />
-        </div>
       </section>
     </div>
   );
