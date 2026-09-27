@@ -819,11 +819,3 @@ export function neighbours(slug: string) {
 export const stanzas = (text: string) => text.split(/\n\s*\n/).map((s) => s.split("\n"));
 
 export const firstLine = (p: Poem) => p.text.split("\n")[0];
-
-export const stats = {
-  poems: poems.length,
-  languages: new Set(poems.map((p) => p.language)).size,
-  chapters: chapters.length,
-  unfinished: poems.filter((p) => p.unfinished).length,
-  lines: poems.reduce((n, p) => n + p.text.split("\n").filter(Boolean).length, 0),
-};

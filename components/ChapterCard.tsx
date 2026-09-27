@@ -52,10 +52,14 @@ export default function ChapterCard({ chapter, className = "" }: { chapter: Chap
                   {p.script === "telugu" ? p.translation?.split("—")[0] : p.title}
                 </li>
               ))}
-              {list.length > 3 && <li className="text-sm text-bone/30">& {list.length - 3} more</li>}
+              {list.length > 3 && <li className="italic-serif text-sm text-bone/35">and more, waiting…</li>}
             </ul>
-            <span className="font-display text-5xl italic" style={{ color: a }}>
-              {String(list.length).padStart(2, "0")}
+            <span
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border text-lg transition-all duration-700 group-hover:rotate-45"
+              style={{ borderColor: `${a}66`, color: a }}
+              aria-hidden
+            >
+              ↗
             </span>
           </div>
         </div>

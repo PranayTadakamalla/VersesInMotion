@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const TEXT =
-  "I write what I cannot say out loud. These are thirty-five small confessions — of a glance that became a flame, of a lamp of waiting that never went out, of mornings that woke me a little more dead, and of a love that never learned how to die.";
+  "I write what I cannot say out loud. These are small confessions — of a glance that became a flame, of a lamp of waiting that never went out, of mornings that woke me a little more dead, and of a love that never learned how to die.";
 
 // words that burn a little brighter than the rest
 const EMBERS = new Set(["glance", "flame,", "lamp", "waiting", "dead,", "love", "die."]);

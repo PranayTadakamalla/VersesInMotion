@@ -13,8 +13,8 @@ export default function SkyTeaser() {
             <span className="italic-serif text-ember">is a star.</span>
           </h2>
           <p className="italic-serif mt-8 max-w-md text-2xl leading-snug text-bone/70">
-            Thirty-five of them, gathered into six constellations. Drag the night around, fly to a chapter, and touch a light to
-            read what it holds.
+            Each one a small light, gathered into constellations of the heart. Turn the night, drift toward a feeling, and touch a
+            light to read what it holds.
           </p>
           <div className="mt-10">
             <PillLink href="/sky" cursor="fly">

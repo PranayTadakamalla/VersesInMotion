@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     template: "%s · Verses in Motion",
   },
   description:
-    "Thirty-five poems of love, longing, heartbreak, the self, hope and memory — in English, Hindi–Urdu and Telugu. By Sai Pranay Tadakamalla.",
+    "Poems of love, longing, heartbreak, the self, hope and memory — in English, Hindi–Urdu and Telugu. By Sai Pranay Tadakamalla.",
   keywords: ["poetry", "poems", "shayari", "Hindi poetry", "Urdu poetry", "Telugu poetry", "Sai Pranay Tadakamalla", "tedious.one"],
   authors: [{ name: "Sai Pranay Tadakamalla", url: "https://www.instagram.com/tedious.one" }],
   openGraph: {

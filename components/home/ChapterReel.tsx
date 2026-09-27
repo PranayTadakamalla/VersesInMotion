@@ -1,18 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ChapterCard from "../ChapterCard";
 import { chapters } from "@/lib/poems";
 
-/** Six chapters slide past like frames of film while the page holds still. */
+/** The chapters slide past like frames of film while the page holds still. */
 export default function ChapterReel() {
-  const section = useRef<HTMLElement>(null);
+  // GSAP wraps the pinned node in a spacer, so pin an inner element React
+  // never removes directly — pinning the component's root breaks unmounting.
+  const pinned = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const bar = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const mm = gsap.matchMedia();
     mm.add("(min-width: 900px) and (prefers-reduced-motion: no-preference)", () => {
@@ -22,7 +24,7 @@ export default function ChapterReel() {
         x: () => -distance(),
         ease: "none",
         scrollTrigger: {
-          trigger: section.current,
+          trigger: pinned.current,
           start: "top top",
           end: () => `+=${distance()}`,
           pin: true,
@@ -37,11 +39,11 @@ export default function ChapterReel() {
   }, []);
 
   return (
-    <section ref={section} className="relative overflow-hidden py-24 md:py-0">
-      <div className="flex min-h-[100svh] flex-col justify-center">
+    <section className="relative overflow-hidden py-24 md:py-0">
+      <div ref={pinned} className="flex min-h-[100svh] flex-col justify-center">
         <div className="mb-10 flex items-end justify-between px-5 md:px-10">
           <div>
-            <p className="label mb-4">The book, in six movements</p>
+            <p className="label mb-4">Turn the pages slowly</p>
             <h2 className="display text-6xl text-bone md:text-7xl">
               Chapters <span className="italic-serif text-ember">of a heart</span>
             </h2>

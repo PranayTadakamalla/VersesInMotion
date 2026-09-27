@@ -3,7 +3,7 @@ import SkyView from "@/components/SkyView";
 
 export const metadata: Metadata = {
   title: "The Sky",
-  description: "Every poem is a star — wander thirty-five poems arranged in six constellations.",
+  description: "Every poem is a star. Wander the night and touch a light to read it.",
 };
 
 export default function SkyPage() {

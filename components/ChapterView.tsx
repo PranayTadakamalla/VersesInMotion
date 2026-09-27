@@ -36,7 +36,7 @@ export default function ChapterView({ chapter, list, next }: { chapter: Chapter;
             animate={ready ? { opacity: 1 } : {}}
             transition={{ duration: 1.2 }}
           >
-            {chapter.glyph} Chapter {chapter.numeral} · {list.length} {list.length === 1 ? "poem" : "poems"}
+            {chapter.glyph} Chapter {chapter.numeral}
           </motion.p>
           <h1 className="display text-[22vw] text-bone md:text-[14vw]">
             <SplitReveal text={chapter.title} play={ready} stagger={0.06} />
@@ -71,7 +71,9 @@ export default function ChapterView({ chapter, list, next }: { chapter: Chapter;
                     />
                     <div className="relative [transform:translateZ(30px)]">
                       <div className="mb-6 flex items-center justify-between">
-                        <span className="font-mono text-xs text-bone/40">{String(i + 1).padStart(2, "0")}</span>
+                        <span className="text-lg" style={{ color: chapter.palette[0] }} aria-hidden>
+                          {chapter.glyph}
+                        </span>
                         <span className="label !text-[0.6rem]">
                           {p.language}
                           {p.unfinished ? " · unfinished" : ""}

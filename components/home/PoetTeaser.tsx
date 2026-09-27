@@ -31,8 +31,8 @@ export default function PoetTeaser() {
             <span className="italic-serif text-ember">Tadakamalla</span>
           </h2>
           <p className="italic-serif mt-8 max-w-lg text-2xl leading-snug text-bone/70">
-            A notebook, a sleepless night, and three languages to say one thing. These verses were once an old hobby — kept
-            here so they never quietly disappear.
+            A notebook, a sleepless night, and every language the heart could find — all trying to say one thing. Once an old
+            hobby, kept here so these verses never quietly disappear.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <PillLink href="/about">The poet</PillLink>
