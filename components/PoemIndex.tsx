@@ -49,14 +49,14 @@ export default function PoemIndex() {
         </h1>
         <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
           <p className="italic-serif text-2xl text-bone/60">
-            {poems.length} poems, written across years and three languages.
+            Written across sleepless years, in every language the heart could find.
           </p>
         </div>
 
         {/* filters */}
-        <div className="sticky top-20 z-30 -mx-5 mt-14 border-y border-bone/10 bg-ink/80 px-5 py-4 backdrop-blur-md md:top-24 md:-mx-10 md:px-10">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex flex-wrap gap-2">
+        <div className="z-30 -mx-5 mt-14 border-y border-bone/10 bg-ink/80 py-4 backdrop-blur-md md:sticky md:top-24 md:-mx-10 md:px-10">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex gap-2 overflow-x-auto px-5 [scrollbar-width:none] md:flex-wrap md:overflow-visible md:px-0">
               <Chip on={chapter === "all"} onClick={() => setChapter("all")}>
                 All
               </Chip>
@@ -66,7 +66,7 @@ export default function PoemIndex() {
                 </Chip>
               ))}
             </div>
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 overflow-x-auto px-5 [scrollbar-width:none] md:flex-wrap md:overflow-visible md:px-0">
               {LANGS.map((l) => (
                 <Chip key={l} on={lang === l} onClick={() => setLang(l)} subtle>
                   {l}
@@ -78,7 +78,7 @@ export default function PoemIndex() {
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder="search a word…"
-                  className="w-44 rounded-full border border-bone/15 bg-transparent px-4 py-2 font-serif text-base italic text-bone placeholder:text-bone/35 focus:border-ember/60 focus:outline-none"
+                  className="w-40 shrink-0 rounded-full border border-bone/15 bg-transparent px-4 py-2 font-serif text-base italic text-bone placeholder:text-bone/35 focus:border-ember/60 focus:outline-none"
                 />
               </label>
             </div>
@@ -113,8 +113,8 @@ export default function PoemIndex() {
                     data-cursor="read"
                     className="group grid grid-cols-[3rem_1fr] items-baseline gap-x-4 border-b border-bone/10 py-6 md:grid-cols-[4rem_1fr_14rem_10rem] md:py-8"
                   >
-                    <span className="font-mono text-xs text-bone/35 transition-colors duration-500 group-hover:text-ember">
-                      {String(poems.indexOf(p) + 1).padStart(2, "0")}
+                    <span className="text-lg transition-transform duration-700 group-hover:rotate-12" style={{ color: c.palette[0] }} aria-hidden>
+                      {c.glyph}
                     </span>
                     <span className="min-w-0">
                       <span
@@ -214,7 +214,7 @@ function Chip({
       onClick={onClick}
       aria-pressed={on}
       className={clsx(
-        "relative rounded-full border px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.22em] transition-all duration-500",
+        "relative shrink-0 whitespace-nowrap rounded-full border px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.22em] transition-all duration-500",
         on ? "border-transparent text-ink" : "border-bone/15 text-bone/70 hover:border-bone/40 hover:text-bone",
         subtle && !on && "border-transparent",
       )}

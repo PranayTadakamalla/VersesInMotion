@@ -5,7 +5,6 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useSite } from "../Providers";
 import { PillLink, SplitReveal } from "../ui";
-import { stats } from "@/lib/poems";
 
 const HeroScene = dynamic(() => import("../three/HeroScene"), { ssr: false });
 
@@ -37,7 +36,7 @@ export default function Hero() {
           animate={ready ? { opacity: 1 } : {}}
           transition={{ duration: 1.5, delay: 1.4 }}
         >
-          Case file no. 221B · Poems &amp; Verses
+          Poems &amp; verses · written after midnight
         </motion.p>
 
         <div>
@@ -53,20 +52,15 @@ export default function Hero() {
 
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <motion.div
-            className="flex gap-8 md:gap-12"
+            className="hidden border-l border-ember/40 pl-5 md:block"
             initial={{ opacity: 0, y: 20 }}
             animate={ready ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, delay: 1.5, ease: silk }}
           >
-            {[
-              [stats.poems, "poems"],
-              [stats.languages, "tongues"],
-              [stats.chapters, "chapters"],
-            ].map(([n, l]) => (
-              <div key={l}>
-                <p className="font-display text-4xl text-bone md:text-5xl">{n}</p>
-                <p className="label mt-1">{l}</p>
-              </div>
+            {["for the ones who stayed,", "the ones who left,", "and the ones who never knew."].map((l) => (
+              <p key={l} className="italic-serif text-lg leading-relaxed text-bone/65 md:text-xl">
+                {l}
+              </p>
             ))}
           </motion.div>
 

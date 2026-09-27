@@ -1,12 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { animate, motion, useInView, useMotionValue, useSpring, useTransform } from "motion/react";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useSite } from "./Providers";
 import { Rise, SplitReveal, Tilt } from "./ui";
 import { SOCIALS } from "@/lib/site";
-import { stats } from "@/lib/poems";
 
 const silk = [0.22, 1, 0.36, 1] as const;
 
@@ -61,25 +60,6 @@ function Portrait() {
   );
 }
 
-function Counter({ to, label }: { to: number; label: string }) {
-  const ref = useRef<HTMLParagraphElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
-  const [n, setN] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    const c = animate(0, to, { duration: 2.2, ease: silk, onUpdate: (v) => setN(Math.round(v)) });
-    return () => c.stop();
-  }, [inView, to]);
-  return (
-    <div className="border-t border-bone/15 pt-5">
-      <p ref={ref} className="font-display text-6xl text-bone md:text-7xl">
-        {n}
-      </p>
-      <p className="label mt-2">{label}</p>
-    </div>
-  );
-}
-
 const TONGUES = [
   { name: "English", sample: "The stars above still spell your name,", cls: "italic-serif text-3xl", note: "for the things I could say" },
   { name: "हिन्दी · اردو", sample: "Main usko aansuon se likh raha hoon,", cls: "italic-serif text-3xl", note: "for the things only these words hold" },
@@ -89,7 +69,7 @@ const TONGUES = [
 export default function AboutView() {
   const { ready } = useSite();
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip">
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-0 h-[900px] w-[1200px] -translate-x-1/2 opacity-40 blur-[140px]"
@@ -116,7 +96,7 @@ export default function AboutView() {
               animate={ready ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 1.4, delay: 0.9, ease: silk }}
             >
-              A notebook, a sleepless night, and three languages to say one thing.
+              A notebook, a sleepless night, and every language I know — all trying to say one thing.
             </motion.p>
           </div>
           <Portrait />
@@ -150,19 +130,22 @@ export default function AboutView() {
         </div>
       </section>
 
-      <section className="relative px-5 py-20 md:px-10">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 md:grid-cols-5">
-          <Counter to={stats.poems} label="poems" />
-          <Counter to={stats.lines} label="lines" />
-          <Counter to={stats.languages} label="languages" />
-          <Counter to={stats.chapters} label="chapters" />
-          <Counter to={stats.unfinished} label="left unfinished" />
-        </div>
+      <section className="relative px-5 py-24 md:px-10 md:py-32">
+        <Rise className="mx-auto max-w-5xl text-center">
+          <p className="breathe mb-8 text-2xl text-ember" aria-hidden>
+            ❦
+          </p>
+          <p className="display text-4xl leading-tight text-bone [text-wrap:balance] md:text-6xl">
+            Some of these poems end mid‑sentence.
+            <br />
+            <span className="italic-serif text-bone/60">Some feelings do too.</span>
+          </p>
+        </Rise>
       </section>
 
       <section className="relative px-5 py-24 md:px-10 md:py-36">
         <div className="mx-auto max-w-7xl">
-          <p className="label mb-12">Three tongues, one heart</p>
+          <p className="label mb-12">The tongues of one heart</p>
           <div className="grid gap-6 md:grid-cols-3">
             {TONGUES.map((t, i) => (
               <Rise key={t.name} delay={i * 0.12}>

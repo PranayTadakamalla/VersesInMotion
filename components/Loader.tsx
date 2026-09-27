@@ -56,7 +56,6 @@ export default function Loader() {
     return () => window.clearTimeout(id);
   }, [done, lenis, setReady, short]);
 
-  const pct = Math.round(progress * 100);
   const whisper = WHISPERS[Math.min(Math.floor(progress * WHISPERS.length), WHISPERS.length - 1)];
   const R = 70;
   const C = 2 * Math.PI * R;
@@ -158,9 +157,12 @@ export default function Loader() {
 
           <div className="absolute bottom-8 left-6 right-6 flex items-end justify-between md:left-10 md:right-10">
             <p className="label">Verses in Motion</p>
-            <p className="font-display text-5xl tabular-nums text-bone/90 md:text-7xl">
-              {String(pct).padStart(3, "0")}
-            </p>
+            <div className="flex w-40 flex-col items-end gap-3 md:w-64">
+              <p className="italic-serif text-lg text-bone/60 md:text-xl">the ink is still drying…</p>
+              <div className="h-px w-full bg-bone/10">
+                <div className="h-px w-full origin-left bg-ember" style={{ transform: `scaleX(${progress})` }} />
+              </div>
+            </div>
           </div>
           <div className="absolute left-6 top-8 md:left-10">
             <p className="label">Sai Pranay Tadakamalla</p>

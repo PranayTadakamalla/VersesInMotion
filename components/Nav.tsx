@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useSite } from "./Providers";
 import { chapters } from "@/lib/poems";
@@ -34,9 +34,12 @@ export default function Nav() {
   }, []);
 
   useEffect(() => setOpen(false), [pathname]);
+  const wasOpen = useRef(false);
   useEffect(() => {
+    // only hand scrolling back if the menu was the one that took it
     if (open) lenis.current?.stop();
-    else lenis.current?.start();
+    else if (wasOpen.current) lenis.current?.start();
+    wasOpen.current = open;
   }, [open, lenis]);
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));

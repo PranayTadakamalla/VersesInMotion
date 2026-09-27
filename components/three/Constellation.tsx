@@ -2,10 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { CameraControls, CameraControlsImpl, Html, Line } from "@react-three/drei";
+import { CameraControls, CameraControlsImpl, Line } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
+import clsx from "clsx";
 import { chapters, poems, firstLine, type ChapterSlug, type Poem } from "@/lib/poems";
 
 function rng(seed: number) {
@@ -16,8 +17,15 @@ function rng(seed: number) {
 }
 
 type Star = { poem: Poem; pos: THREE.Vector3; color: THREE.Color; size: number };
+type Zoom = { n: number; dir: 1 | -1 };
 
-export function useSkyLayout() {
+/** Screen-space anchors the DOM overlay follows. */
+type Anchors = {
+  labels: React.RefObject<(HTMLDivElement | null)[]>;
+  tip: React.RefObject<HTMLDivElement | null>;
+};
+
+function useSkyLayout() {
   return useMemo(() => {
     const centres = new Map<ChapterSlug, THREE.Vector3>();
     chapters.forEach((c, i) => {
@@ -59,6 +67,7 @@ function Glow({ star, onHover, active }: { star: Star; onHover: (s: Star | null)
     ctx.fillRect(0, 0, 128, 128);
     return new THREE.CanvasTexture(c);
   }, []);
+  useEffect(() => () => tex.dispose(), [tex]);
   const phase = useMemo(() => Math.random() * 10, []);
   useFrame((state) => {
     if (!ref.current) return;
@@ -118,24 +127,27 @@ function Dust() {
   );
 }
 
-type Zoom = { n: number; dir: 1 | -1 };
+const tmp = new THREE.Vector3();
 
 function Scene({
   focus,
   zoom,
   onHover,
   hovered,
+  anchors,
 }: {
   focus: ChapterSlug | null;
   zoom: Zoom;
   onHover: (s: Star | null) => void;
   hovered: Star | null;
+  anchors: Anchors;
 }) {
   const { centres, stars } = useSkyLayout();
   const controls = useRef<CameraControls>(null);
-  const { size } = useThree();
+  const { size, camera, gl } = useThree();
+  const narrow = size.width < 700;
 
-  // the wheel belongs to the page; zoom lives on buttons and pinches
+  // The wheel belongs to the page; zoom lives on the buttons and on pinches.
   useEffect(() => {
     const c = controls.current;
     if (!c) return;
@@ -145,7 +157,10 @@ function Scene({
     c.touches.one = A.TOUCH_ROTATE;
     c.touches.two = A.TOUCH_DOLLY;
     c.touches.three = A.NONE;
-  }, []);
+    // camera-controls claims every touch; give vertical swipes back to the page
+    const id = window.setTimeout(() => (gl.domElement.style.touchAction = "pan-y"), 0);
+    return () => window.clearTimeout(id);
+  }, [gl]);
 
   useEffect(() => {
     if (zoom.n > 0) void controls.current?.dolly(zoom.dir * 7, true);
@@ -154,18 +169,36 @@ function Scene({
   useEffect(() => {
     const c = controls.current;
     if (!c) return;
-    const far = size.width < 700 ? 1.45 : 1;
+    const far = narrow ? 1.7 : 1;
     if (focus) {
       const t = centres.get(focus)!;
-      const eye = t.clone().multiplyScalar(1.9).add(new THREE.Vector3(0, 3, 0));
+      const eye = t.clone().multiplyScalar(narrow ? 2.4 : 1.9).add(new THREE.Vector3(0, 3, 0));
       void c.setLookAt(eye.x, eye.y, eye.z, t.x, t.y, t.z, true);
     } else {
-      void c.setLookAt(0, 16 * far, 38 * far, 0, 0, 0, true);
+      // on phones, look a little above the sky so the stars settle below the title
+      void c.setLookAt(0, 16 * far, 38 * far, 0, narrow ? 7 : 0, 0, true);
     }
-  }, [focus, centres, size.width]);
+  }, [focus, centres, narrow]);
 
   useFrame((_, dt) => {
     if (!focus && !hovered && controls.current) controls.current.azimuthAngle += dt * 0.03;
+
+    // pin the DOM labels to their constellations
+    const w = size.width;
+    const h = size.height;
+    chapters.forEach((c, i) => {
+      const el = anchors.labels.current?.[i];
+      if (!el) return;
+      tmp.copy(centres.get(c.slug)!).add(new THREE.Vector3(0, 5, 0)).project(camera);
+      const visible = tmp.z < 1 && Math.abs(tmp.x) < 1.2 && Math.abs(tmp.y) < 1.2;
+      el.style.transform = `translate3d(${(tmp.x * 0.5 + 0.5) * w}px, ${(-tmp.y * 0.5 + 0.5) * h}px, 0) translate(-50%, -50%)`;
+      el.style.visibility = visible ? "visible" : "hidden";
+    });
+    const tip = anchors.tip.current;
+    if (tip && hovered) {
+      tmp.copy(hovered.pos).project(camera);
+      tip.style.transform = `translate3d(${(tmp.x * 0.5 + 0.5) * w}px, ${(-tmp.y * 0.5 + 0.5) * h}px, 0)`;
+    }
   });
 
   return (
@@ -175,57 +208,22 @@ function Scene({
       <Dust />
       {chapters.map((c) => {
         const list = stars.filter((s) => s.poem.chapter === c.slug);
-        const centre = centres.get(c.slug)!;
         const dim = focus && focus !== c.slug;
-        return (
-          <group key={c.slug}>
-            {list.length > 1 && (
-              <Line
-                points={list.map((s) => s.pos)}
-                color={c.palette[0]}
-                lineWidth={0.8}
-                transparent
-                opacity={dim ? 0.06 : 0.28}
-              />
-            )}
-            <Html position={[centre.x, centre.y + 5, centre.z]} center distanceFactor={22} zIndexRange={[10, 0]}>
-              <div className="pointer-events-none select-none text-center" style={{ opacity: dim ? 0.25 : 1, transition: "opacity .6s" }}>
-                <p className="font-mono text-[10px] uppercase tracking-[0.4em]" style={{ color: c.palette[0] }}>
-                  {c.numeral}
-                </p>
-                <p className="whitespace-nowrap font-display text-3xl italic text-bone">{c.title}</p>
-              </div>
-            </Html>
-          </group>
-        );
+        return list.length > 1 ? (
+          <Line
+            key={c.slug}
+            points={list.map((s) => s.pos)}
+            color={c.palette[0]}
+            lineWidth={0.8}
+            transparent
+            opacity={dim ? 0.06 : 0.28}
+          />
+        ) : null;
       })}
       {stars.map((s) => (
         <Glow key={s.poem.slug} star={s} onHover={onHover} active={hovered?.poem.slug === s.poem.slug} />
       ))}
-      {hovered && (
-        <Html position={hovered.pos} zIndexRange={[20, 0]} style={{ pointerEvents: "none" }}>
-          <div className="ml-6 w-64 -translate-y-1/2 rounded-sm border border-bone/15 bg-ink/80 p-4 backdrop-blur-md">
-            <p className="label mb-2 !text-[0.6rem]" style={{ color: hovered.color.getStyle() }}>
-              {hovered.poem.language}
-              {hovered.poem.unfinished ? " · unfinished" : ""}
-            </p>
-            <p className={`text-xl leading-tight text-bone ${hovered.poem.script === "telugu" ? "script-telugu !leading-snug" : "font-display"}`}>
-              {hovered.poem.title}
-            </p>
-            <p className={`mt-2 text-sm text-bone/60 ${hovered.poem.script === "devanagari" ? "script-devanagari" : hovered.poem.script === "telugu" ? "script-telugu" : "italic-serif"}`}>
-              {firstLine(hovered.poem)}
-            </p>
-          </div>
-        </Html>
-      )}
-      <CameraControls
-        ref={controls}
-        minDistance={6}
-        maxDistance={80}
-        dollySpeed={0.4}
-        smoothTime={0.9}
-        truckSpeed={0}
-      />
+      <CameraControls ref={controls} minDistance={6} maxDistance={90} dollySpeed={0.4} smoothTime={0.9} truckSpeed={0} />
       <EffectComposer multisampling={0}>
         <Bloom mipmapBlur intensity={1.3} luminanceThreshold={0.2} radius={0.7} />
       </EffectComposer>
@@ -235,13 +233,58 @@ function Scene({
 
 export default function Constellation({ focus, zoom }: { focus: ChapterSlug | null; zoom: Zoom }) {
   const [hovered, setHovered] = useState<Star | null>(null);
+  const labels = useRef<(HTMLDivElement | null)[]>([]);
+  const tip = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     window.dispatchEvent(new CustomEvent("cursor-label", { detail: hovered ? "read" : "" }));
   }, [hovered]);
   useEffect(() => () => void window.dispatchEvent(new CustomEvent("cursor-label", { detail: "" })), []);
+
   return (
-    <Canvas dpr={[1, 1.75]} camera={{ position: [0, 30, 70], fov: 45 }} gl={{ antialias: true }}>
-      <Scene focus={focus} zoom={zoom} onHover={setHovered} hovered={hovered} />
-    </Canvas>
+    <div className="relative h-full w-full">
+      <Canvas dpr={[1, 1.75]} camera={{ position: [0, 30, 70], fov: 45 }} gl={{ antialias: true }}>
+        <Scene focus={focus} zoom={zoom} onHover={setHovered} hovered={hovered} anchors={{ labels, tip }} />
+      </Canvas>
+
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        {chapters.map((c, i) => (
+          <div
+            key={c.slug}
+            ref={(el) => {
+              labels.current[i] = el;
+            }}
+            className="absolute left-0 top-0 select-none text-center transition-opacity duration-700"
+            style={{ visibility: "hidden", opacity: focus && focus !== c.slug ? 0.25 : 1 }}
+          >
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em]" style={{ color: c.palette[0] }}>
+              {c.numeral}
+            </p>
+            <p className="whitespace-nowrap font-display text-xl italic text-bone md:text-3xl">{c.title}</p>
+          </div>
+        ))}
+        <div ref={tip} className="absolute left-0 top-0">
+          {hovered && (
+            <div className="ml-6 w-64 -translate-y-1/2 rounded-sm border border-bone/15 bg-ink/80 p-4 backdrop-blur-md">
+              <p className="label mb-2 !text-[0.6rem]" style={{ color: hovered.color.getStyle() }}>
+                {hovered.poem.language}
+                {hovered.poem.unfinished ? " · unfinished" : ""}
+              </p>
+              <p className={clsx("text-xl leading-tight text-bone", hovered.poem.script === "telugu" ? "script-telugu !leading-snug" : "font-display")}>
+                {hovered.poem.title}
+              </p>
+              <p
+                className={clsx(
+                  "mt-2 text-sm text-bone/60",
+                  hovered.poem.script === "devanagari" ? "script-devanagari" : hovered.poem.script === "telugu" ? "script-telugu" : "italic-serif",
+                )}
+              >
+                {firstLine(hovered.poem)}
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
