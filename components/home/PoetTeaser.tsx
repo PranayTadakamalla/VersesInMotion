@@ -39,6 +39,9 @@ export default function PoetTeaser() {
             <PillLink href={SOCIALS.instagram.href} external variant="ghost" cursor="say hi">
               {SOCIALS.instagram.handle}
             </PillLink>
+            <PillLink href={SOCIALS.linkedin.href} external variant="ghost" cursor="connect">
+              LinkedIn
+            </PillLink>
           </div>
         </Rise>
       </div>

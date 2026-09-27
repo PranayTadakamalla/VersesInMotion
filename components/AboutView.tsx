@@ -206,7 +206,6 @@ export default function AboutView() {
               </a>
             ))}
           </div>
-          <p className="italic-serif mt-8 text-xl text-bone/50">LinkedIn and everything else live on my Instagram.</p>
         </div>
       </section>
     </div>

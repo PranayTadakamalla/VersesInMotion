@@ -12,6 +12,7 @@ import Nav from "@/components/Nav";
 import Cursor from "@/components/Cursor";
 import Loader from "@/components/Loader";
 import Footer from "@/components/Footer";
+import { SOCIALS } from "@/lib/site";
 
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],
@@ -82,6 +83,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${bodoni.variable} ${cormorant.variable} ${plexMono.variable} ${tiroDeva.variable} ${tiroTelugu.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Sai Pranay Tadakamalla",
+              url: SITE,
+              sameAs: [SOCIALS.instagram.href, SOCIALS.linkedin.href, SOCIALS.portfolio.href],
+            }),
+          }}
+        />
         <Providers>
           <Loader />
           <Nav />
