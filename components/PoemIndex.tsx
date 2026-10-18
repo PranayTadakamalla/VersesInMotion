@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react
 import clsx from "clsx";
 import { chapters, getChapter, poems, type ChapterSlug, type Poem } from "@/lib/poems";
 import { useSite } from "./Providers";
+import { copy } from "@/lib/content";
 import { SplitReveal } from "./ui";
 
 const LANGS = ["All", "English", "Hindi / Urdu", "Telugu"] as const;
@@ -43,13 +44,13 @@ export default function PoemIndex() {
   return (
     <div className="relative px-5 pb-32 pt-36 md:px-10 md:pt-44">
       <div className="mx-auto max-w-7xl">
-        <p className="label mb-6">Index of the heart</p>
+        <p className="label mb-6">{copy.index.label}</p>
         <h1 className="display text-[18vw] text-bone md:text-[10vw]">
           <SplitReveal text="The Poems" play={ready} stagger={0.05} />
         </h1>
         <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
           <p className="italic-serif text-2xl text-bone/60">
-            Written across sleepless years, in every language the heart could find.
+            {copy.index.line}
           </p>
         </div>
 
@@ -146,7 +147,7 @@ export default function PoemIndex() {
           </AnimatePresence>
           {list.length === 0 && (
             <p className="italic-serif py-24 text-center text-3xl text-bone/50">
-              No poem holds that word — yet.
+              {copy.index.empty}
             </p>
           )}
         </div>

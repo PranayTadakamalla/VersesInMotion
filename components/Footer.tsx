@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { chapters } from "@/lib/poems";
-import { SOCIALS } from "@/lib/site";
+import { SOCIAL_LIST, social } from "@/lib/site";
+import { copy } from "@/lib/content";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const primary = social("instagram") ?? SOCIAL_LIST[0];
   return (
     <footer className="relative overflow-hidden border-t border-bone/10 bg-ink px-5 pb-10 pt-24 md:px-10">
       <div
@@ -11,26 +13,26 @@ export default function Footer() {
         style={{ background: "radial-gradient(circle, rgba(142,27,42,0.6), rgba(217,163,91,0.15) 50%, transparent 70%)" }}
       />
       <div className="relative mx-auto max-w-7xl">
-        <p className="label mb-6">Before you go</p>
+        <p className="label mb-6">{copy.footer.label}</p>
         <a
-          href={SOCIALS.instagram.href}
+          href={primary?.href}
           target="_blank"
           rel="noreferrer"
           data-cursor="write"
           className="group block"
         >
           <span className="display block text-[13vw] leading-[0.85] text-bone transition-colors duration-700 group-hover:text-ember md:text-[9vw]">
-            Stay <span className="italic-serif">a while</span>
+            {copy.footer.title} <span className="italic-serif">{copy.footer.accent}</span>
           </span>
           <span className="display block text-[13vw] leading-[0.95] text-bone/30 transition-colors duration-700 group-hover:text-bone md:text-[9vw]">
-            @tedious.one <span className="inline-block transition-transform duration-700 group-hover:translate-x-4 group-hover:-translate-y-4">↗</span>
+            {primary?.handle} <span className="inline-block transition-transform duration-700 group-hover:translate-x-4 group-hover:-translate-y-4">↗</span>
           </span>
         </a>
 
         <div className="mt-20 grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <p className="italic-serif max-w-md text-2xl leading-snug text-bone/70">
-              “My heart has buried you a thousand times, yet every lonely night it still kneels beside your memory.”
+              {copy.footer.quote}
             </p>
           </div>
           <div>
@@ -49,7 +51,7 @@ export default function Footer() {
           <div>
             <p className="label mb-4">Elsewhere</p>
             <ul className="space-y-2">
-              {Object.values(SOCIALS).map((s) => (
+              {SOCIAL_LIST.map((s) => (
                 <li key={s.href}>
                   <a href={s.href} target="_blank" rel="noreferrer" className="draw-link text-lg text-bone/80 hover:text-bone">
                     {s.label} <span className="text-ember">↗</span>
@@ -62,7 +64,7 @@ export default function Footer() {
 
         <div className="mt-20 flex flex-col justify-between gap-3 border-t border-bone/10 pt-6 md:flex-row">
           <p className="label">© {year} Sai Pranay Tadakamalla · All rights reserved</p>
-          <p className="label">Written in notebooks · Set in motion</p>
+          <p className="label">{copy.footer.right}</p>
         </div>
       </div>
     </footer>

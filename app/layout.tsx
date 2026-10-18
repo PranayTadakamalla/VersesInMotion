@@ -7,12 +7,7 @@ import {
   Tiro_Telugu,
 } from "next/font/google";
 import "./globals.css";
-import Providers from "@/components/Providers";
-import Nav from "@/components/Nav";
-import Cursor from "@/components/Cursor";
-import Loader from "@/components/Loader";
-import Footer from "@/components/Footer";
-import { SOCIALS } from "@/lib/site";
+import { SOCIAL_LIST } from "@/lib/site";
 
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],
@@ -91,19 +86,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "Person",
               name: "Sai Pranay Tadakamalla",
               url: SITE,
-              sameAs: [SOCIALS.instagram.href, SOCIALS.linkedin.href, SOCIALS.portfolio.href],
+              sameAs: SOCIAL_LIST.map((s) => s.href),
             }),
           }}
         />
-        <Providers>
-          <Loader />
-          <Nav />
-          <main id="main">{children}</main>
-          <Footer />
-          <Cursor />
-        </Providers>
-        <div className="vignette" aria-hidden />
-        <div className="grain" aria-hidden />
+        {children}
       </body>
     </html>
   );

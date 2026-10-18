@@ -1,4 +1,5 @@
 import { chapters, poems } from "@/lib/poems";
+import { copy } from "@/lib/content";
 import { PillLink, Rise } from "../ui";
 
 /** A little armillary of rings — each chapter an orbit, each poem a point of light. */
@@ -7,14 +8,13 @@ export default function SkyTeaser() {
     <section className="relative overflow-hidden px-5 py-32 md:px-10 md:py-48">
       <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
         <Rise>
-          <p className="label mb-6">An index written in stars</p>
+          <p className="label mb-6">{copy.skyTeaser.label}</p>
           <h2 className="display text-6xl text-bone md:text-8xl">
-            Every poem <br />
-            <span className="italic-serif text-ember">is a star.</span>
+            {copy.skyTeaser.title} <br />
+            <span className="italic-serif text-ember">{copy.skyTeaser.accent}</span>
           </h2>
           <p className="italic-serif mt-8 max-w-md text-2xl leading-snug text-bone/70">
-            Each one a small light, gathered into constellations of the heart. Turn the night, drift toward a feeling, and touch a
-            light to read what it holds.
+            {copy.skyTeaser.text}
           </p>
           <div className="mt-10">
             <PillLink href="/sky" cursor="fly">

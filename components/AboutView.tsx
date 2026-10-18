@@ -5,7 +5,9 @@ import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useSite } from "./Providers";
 import { Rise, SplitReveal, Tilt } from "./ui";
-import { SOCIALS } from "@/lib/site";
+import { SOCIAL_LIST, social } from "@/lib/site";
+import { copy, site } from "@/lib/content";
+import Rich from "./Rich";
 
 const silk = [0.22, 1, 0.36, 1] as const;
 
@@ -36,8 +38,8 @@ function Portrait() {
         onClick={() => r.set(r.get() > 60 ? 0 : 150)}
       >
         <Image
-          src="/images/pranay.webp"
-          alt="Sai Pranay Tadakamalla, thoughtful, at a desk by a window"
+          src={site.images.portrait.src}
+          alt={site.images.portrait.alt}
           fill
           priority
           sizes="(max-width: 768px) 92vw, 520px"
@@ -45,8 +47,8 @@ function Portrait() {
         />
         <motion.div className="absolute inset-0" style={{ clipPath: clip }}>
           <Image
-            src="/images/illustrated.webp"
-            alt="An illustrated self-portrait holding a bouquet of flowers"
+            src={site.images.illustrated.src}
+            alt={site.images.illustrated.alt}
             fill
             sizes="(max-width: 768px) 92vw, 520px"
             className="object-cover"
@@ -54,17 +56,17 @@ function Portrait() {
         </motion.div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
         <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-bone/15" />
-        <p className="label pointer-events-none absolute bottom-5 left-5 !text-bone/70">Hover or tap — the one I imagine</p>
+        <p className="label pointer-events-none absolute bottom-5 left-5 !text-bone/70">{copy.about.photoHint}</p>
       </div>
     </Tilt>
   );
 }
 
-const TONGUES = [
-  { name: "English", sample: "The stars above still spell your name,", cls: "italic-serif text-3xl", note: "for the things I could say" },
-  { name: "हिन्दी · اردو", sample: "Main usko aansuon se likh raha hoon,", cls: "italic-serif text-3xl", note: "for the things only these words hold" },
-  { name: "తెలుగు", sample: "తను ఆకాశ వీధిలో అందాల జాబిలి...", cls: "script-telugu text-2xl", note: "for a memory time cannot erase" },
-];
+const TONGUE_CLASS = {
+  latin: "italic-serif text-3xl",
+  devanagari: "script-devanagari text-2xl",
+  telugu: "script-telugu text-2xl",
+} as const;
 
 export default function AboutView() {
   const { ready } = useSite();
@@ -80,7 +82,7 @@ export default function AboutView() {
         <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
           <div>
             <motion.p className="label mb-6" initial={{ opacity: 0 }} animate={ready ? { opacity: 1 } : {}} transition={{ duration: 1.2 }}>
-              The poet · {SOCIALS.instagram.handle}
+              The poet{social("instagram") ? ` · ${social("instagram")!.handle}` : ""}
             </motion.p>
             <h1 className="display text-[17vw] text-bone lg:text-[8.5vw]">
               <span className="block">
@@ -96,7 +98,7 @@ export default function AboutView() {
               animate={ready ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 1.4, delay: 0.9, ease: silk }}
             >
-              A notebook, a sleepless night, and every language I know — all trying to say one thing.
+              {copy.about.lede}
             </motion.p>
           </div>
           <Portrait />
@@ -105,27 +107,15 @@ export default function AboutView() {
 
       <section className="relative px-5 py-24 md:px-10 md:py-36">
         <div className="mx-auto grid max-w-7xl gap-16 md:grid-cols-[14rem_1fr]">
-          <p className="label">Of the one who wrote</p>
+          <p className="label">{copy.about.storyLabel}</p>
           <div className="max-w-3xl space-y-8 font-serif text-2xl leading-relaxed text-bone/80 md:text-3xl md:leading-relaxed">
-            <Rise>
-              <p>
-                I started writing the way most people do — to survive a feeling that had nowhere else to go. A glance that became a
-                flame. A friendship I wished were something more. A morning heavier than the night before it.
-              </p>
-            </Rise>
-            <Rise>
-              <p>
-                Some poems arrived in <em className="text-ember">English</em>. Some only knew how to be said in{" "}
-                <em className="text-ember">Hindi and Urdu</em>. And one came in <em className="text-ember">Telugu</em>, for Savitri —
-                the Mahanati, whose films outlived their decades.
-              </p>
-            </Rise>
-            <Rise>
-              <p>
-                This was an old hobby, and I hadn’t opened these notebooks in months. But a poem left unread is a lamp left unlit.
-                So here they are — every one of them, even the ones that stop mid-sentence — <span className="italic text-moon">set in motion</span>.
-              </p>
-            </Rise>
+            {copy.about.story.map((para, i) => (
+              <Rise key={i}>
+                <p>
+                  <Rich text={para} />
+                </p>
+              </Rise>
+            ))}
           </div>
         </div>
       </section>
@@ -136,24 +126,27 @@ export default function AboutView() {
             ❦
           </p>
           <p className="display text-4xl leading-tight text-bone [text-wrap:balance] md:text-6xl">
-            Some of these poems end mid‑sentence.
-            <br />
-            <span className="italic-serif text-bone/60">Some feelings do too.</span>
+            {copy.about.interlude[0]}
+            {copy.about.interlude.slice(1).map((l) => (
+              <span key={l} className="italic-serif block text-bone/60">
+                {l}
+              </span>
+            ))}
           </p>
         </Rise>
       </section>
 
       <section className="relative px-5 py-24 md:px-10 md:py-36">
         <div className="mx-auto max-w-7xl">
-          <p className="label mb-12">The tongues of one heart</p>
+          <p className="label mb-12">{copy.about.tonguesLabel}</p>
           <div className="grid gap-6 md:grid-cols-3">
-            {TONGUES.map((t, i) => (
+            {copy.about.tongues.map((t, i) => (
               <Rise key={t.name} delay={i * 0.12}>
                 <Tilt max={8} className="h-full">
                   <div className="relative flex h-full min-h-[300px] flex-col justify-between border border-bone/10 bg-bone/[0.02] p-8 [transform-style:preserve-3d]">
                     <p className="font-display text-5xl text-bone [transform:translateZ(40px)]">{t.name}</p>
                     <div className="[transform:translateZ(60px)]">
-                      <p className={`${t.cls} leading-snug text-bone/80`}>“{t.sample}”</p>
+                      <p className={`${TONGUE_CLASS[t.script]} leading-snug text-bone/80`}>“{t.sample}”</p>
                       <p className="label mt-5">{t.note}</p>
                     </div>
                   </div>
@@ -166,9 +159,9 @@ export default function AboutView() {
 
       <section className="relative px-5 pb-36 pt-12 md:px-10">
         <div className="mx-auto max-w-7xl">
-          <p className="label mb-10">Find me elsewhere</p>
+          <p className="label mb-10">{copy.about.elsewhereLabel}</p>
           <div className="divide-y divide-bone/10 border-y border-bone/10">
-            {Object.values(SOCIALS).map((s) => (
+            {SOCIAL_LIST.map((s) => (
               <a
                 key={s.href}
                 href={s.href}

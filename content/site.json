@@ -1,0 +1,586 @@
+{
+  "poems": [
+    {
+      "slug": "she-shines",
+      "title": "She Shines",
+      "language": "English",
+      "script": "latin",
+      "chapter": "love",
+      "text": "She shines like the moon, so bright and fair,\nHer voice is like a melody, floating in the air,\nHer fragrance is like flowers in full bloom,\nEvery smile of hers lights up the room.\n\nWithout her, my world feels tight and small,\nWith her presence, I feel I have it all.\nHer laughter, so sweet, fills my heart with cheer,\nIn her smile, my happiness is always near.\n\nShe is a beauty like none before,\nA symphony of grace, forevermore.\nHer voice, a melody, soft and true,\nEchoes in my heart, a love that grew.\n\nEach sorrow she carries, a whisper of pain,\nYet in her embrace, I find peace again.\nHer smile, a beacon and a guiding light,\nGives purpose to my days, and makes them bright.\n\nHer energy flows, a wave so serene,\nHer presence, a calm like I’ve never seen.\nHer eyes, like stars, in the darkest night,\nSparkle with love, a radiant light.\n\nHer gaze, a caress, tender and sweet,\nA touch that makes my world complete.\nHer love fills my heart with endless grace,\nA unique tenderness, none can replace."
+    },
+    {
+      "slug": "thousands-see-her",
+      "title": "Thousands See Her",
+      "language": "English",
+      "script": "latin",
+      "chapter": "love",
+      "text": "Thousands see her, yet none perceive,\nThe way her presence makes me believe.\nTo them, she’s just a fleeting sight,\nTo me, she’s the sun, the stars, the night.\n\nIn crowds, she walks with effortless grace,\nYet I alone know what lies beneath that face.\nThe depth of kindness in her eyes so deep,\nThe gentle promises she makes and keeps.\n\nShe lights the world with her mere presence,\nYet remains humble, a quiet essence.\nWhile others chase what glitters and gleams,\nShe fills the silence with whispered dreams.\n\nA thousand hearts may see her beauty true,\nBut none will ever feel what I feel for you."
+    },
+    {
+      "slug": "unseen-yet-infinite",
+      "title": "Unseen, Yet Infinite",
+      "note": "A second telling of “Thousands See Her”",
+      "language": "English",
+      "script": "latin",
+      "chapter": "love",
+      "text": "They speak to her with borrowed lines,\nI carve my love in endless rhymes.\nMany may chase, may long, may yearn,\nBut my heart for her will forever burn.\n\nShe’s not just beauty, she’s the air I breathe,\nThe sky I paint, the fate I weave.\nThey may admire, they may fall,\nBut my madness outshines them all."
+    },
+    {
+      "slug": "it-began-with-a-glance",
+      "title": "It Began with a Glance",
+      "language": "English",
+      "script": "latin",
+      "chapter": "love",
+      "text": "It began with a glance so rare,\nA spark of charm hung in the air.\nIn whispers soft, the rains did fall,\nAnd love embraced us—heart and all.\n\nA moment froze, a breath suspended,\nWhere two souls perfectly blended.\nYour eyes held stories yet untold,\nA warmth that put away the cold.\n\nIn that instant, time stood still,\nYour presence bent my very will.\nA glance transformed into a flame,\nNothing would ever be the same.\n\nWhat started as a fleeting sight,\nBecame my guiding star, my light."
+    },
+    {
+      "slug": "in-her-eyes",
+      "title": "In Her Eyes",
+      "language": "English",
+      "script": "latin",
+      "chapter": "love",
+      "text": "In her eyes, I saw the sky so bright,\nHer voice was soft, a sweet delight.\nHer hair flowed gently, dark as night,\nA smile so warm, it felt just right.\n\nEvery time her name came up, I’d blush and turn red,\nThinking of her, the warmth in me spread.\nEvery time she spoke, my heart would explode,\nI wished it never ended, in that moment, I glowed.\n\nShe was sweet, caring, like a soft embrace,\nThough the love I felt, she never could trace.\nFor unspoken feelings, deep and true,\nWere the things I wished she only knew."
+    },
+    {
+      "slug": "wo-ladki",
+      "title": "Woh Ladki",
+      "translation": "That girl",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "love",
+      "text": "Woh ladki… ek khwab thi, jo meri tanhaayi ka sach ban gayi,\nMain uske husn ka qaid hoon, aur yeh qaid meri azaadi ban gayi,\nUski hansi mein chhupa hai mera saara khauf, mera saara sukoon,\nAur main… bas ek shayar, jo uske naam se apni umr likh raha hai."
+    },
+    {
+      "slug": "junoon-ka-aisa-aalam",
+      "title": "Junoon Ka Aisa Aalam",
+      "translation": "The seven stages of love — from a glance to annihilation",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "love",
+      "text": "Dilkashi se hui shuruaat, ek nazar mein kho gaye,\nUns ki baarish mein bheege, har lamha Mohabbat ho gaye.\nMohabbat ne rukh badla, ab Aqeedat ki raah chali,\nIbadat ban gaya har ehsaas, har saans mein tera naam basi.\n\nJunoon ka aisa aalam, khud se begaane ho gaye,\nMaut bhi muskura uthi, jab tujhmein fana ho gaye."
+    },
+    {
+      "slug": "pal-pal",
+      "title": "Pal Pal",
+      "translation": "Moment by moment",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "love",
+      "text": "Pal pal mere chain ko yun churaya aapne,\nKi na paas aaye, na hi door gaye.\n\nMeri aankhon pe aisa jaadu chha gaya,\nKi aapko na chhod sakta hoon, na bhool sakta hoon.\n\nAise mere dil mein base ho aap,\nJaise Shyam mein basi ho Radha."
+    },
+    {
+      "slug": "milo-ya-na-milo",
+      "title": "Milo Ya Na Milo",
+      "translation": "Whether we meet or not",
+      "language": "Hindi / Urdu",
+      "script": "devanagari",
+      "chapter": "love",
+      "text": "मिलो या न मिलो तुम मेरे दिल में हमेशा बस जाओगे,\nमेरी हर ख़ुशी और हर गम में तुम्ही रहोगे।\nतुम्हारी यादों में मैं रात भर जागता हूँ,\nऔर तुम्हारी ख़ुशी की ख़ातिर सब कुछ भूल जाता हूँ।\n\nतुम्हारी मुस्कुराहट ही मेरी ज़िंदगी है,\nतुम्हारी गर्मा गर्मी में ही मेरी क़िस्मत है।\nमिलो या न मिलो, पर मेरे साथ हमेशा रहना,\nक्योंकि तुम मेरी साँसों में, मेरी हर धड़कन में हो।"
+    },
+    {
+      "slug": "i-miss-you",
+      "title": "I Miss You",
+      "language": "English",
+      "script": "latin",
+      "chapter": "longing",
+      "text": "I miss you when the sun shines bright,\nAnd even more in silent night.\nI miss the thought of seeing you the next day,\nThe little things I used to do to make you stay.\n\nI miss the way I would search around,\nHoping you were to be found.\nThe silly reasons I would make,\nJust to talk, for my heart’s sake.\n\nI walked behind, yet stayed unseen,\nImagining things that might have been.\nThe way you smiled, the way you stared,\nMoments I wished that you had cared.\n\nBut now the days feel cold and long,\nWithout you here, it all feels wrong.\nI miss it all, the thrill, the cheer,\nAnd most of all, I miss you near."
+    },
+    {
+      "slug": "the-night-goes-on",
+      "title": "The Night Goes On",
+      "language": "English",
+      "script": "latin",
+      "chapter": "longing",
+      "text": "I count the stars, one by one,\nThe night is long, but sleep won’t come.\nI close my eyes, but all I see,\nAre memories of you and me.\n\nI miss your voice, I miss your smile,\nI wish you’d stay, just for a while.\nMy heart feels lost, my world is blue,\nI don’t know how to live without you.\n\nThe night goes on, but time stands still,\nI miss you more, I always will.\nI hope one day, you will miss me too,\nAnd find your way back, like I want you to."
+    },
+    {
+      "slug": "echoes-of-you",
+      "title": "Echoes of You",
+      "language": "English",
+      "script": "latin",
+      "chapter": "longing",
+      "text": "The stars above still spell your name,\nThough time has blurred the burning flame.\nI trace the sky and wish you knew,\nThat every echo leads to you."
+    },
+    {
+      "slug": "fading-footsteps",
+      "title": "Fading Footsteps",
+      "language": "English",
+      "script": "latin",
+      "chapter": "longing",
+      "text": "The paths we walked now stand so still,\nThe echoes lost against my will.\nEach step we took, so full of light,\nNow fades into the endless night."
+    },
+    {
+      "slug": "mere-intezaar-ka-diya",
+      "title": "Mere Intezaar Ka Diya",
+      "translation": "The lamp of my waiting",
+      "language": "Hindi / Urdu",
+      "script": "devanagari",
+      "chapter": "longing",
+      "text": "न चाँद का छाँव मिला, न सूरज की धूप मिली,\nमैं तो बस साँझ की हल्की रोशनी में तेरा इंतेज़ार किए बैठा हूँ।\nमैंने तेरा इंतेज़ार किया है, कर रहा हूँ और करता रहूँगा,\nचाहे तू आए या न आए, मेरे इंतेज़ार का दिया यूँही जलता रहेगा।\n\nतेरे आने की बाट जोहता हूँ हर पल,\nतेरी यादों में बिताता हूँ हर लम्हा, हर पल।\nहज़ार बार हार मान लेता हूँ, पर फिर से उठ जाता हूँ,\nक्योंकि तुम ही मेरी ज़िंदगी हो, तुम ही मेरी मुराद हो।"
+    },
+    {
+      "slug": "jo-socha-tha",
+      "title": "Jo Socha Tha",
+      "translation": "What I had imagined",
+      "language": "Hindi / Urdu",
+      "script": "devanagari",
+      "chapter": "longing",
+      "text": "जो सोचा था, वो बन न सका,\nजो चाहा था, वो पास न रहा।\nहर राह में बस अँधेरा मिला,\nधड़कन में एक तन्हा सवेरा मिला।\n\nतुम्हारी राह में सब कुछ खोया,\nपर तुम्हारी यादों में सब कुछ पाया।\nतुम्हारे बिना ज़िंदगी सूनी है,\nपर तुम्हारे साथ ज़िंदगी पूरी है।\n\nइस साहिल पर अकेले खड़े हैं,\nतुम्हारी आहट का इंतेज़ार है।\nजब तक तुम न आओ, यह दिल न रुकेगा,\nतुम्हारे आने का ख़्वाब न टूटेगा।"
+    },
+    {
+      "slug": "woh-chaandni-thi",
+      "title": "Woh Chaandni Thi",
+      "translation": "She was moonlight",
+      "language": "Hindi / Urdu",
+      "script": "devanagari",
+      "chapter": "longing",
+      "text": "वह चाँदनी थी, जो मेरी ज़िंदगी में रोशनी लाई,\nऔर मैं एक था जो उनके ख्वाब लेकर रह गया।\nउसने दोस्ती के अरमान लेकर दिल में बस गई,\nऔर मैंने उसका मोहब्बत का जहान खुद में बसाया।\n\nहर पल उसके साथ एक ख्वाब था,\nहर बात उसकी ज़िंदगी का खिताब था।\nपर क़िस्मत ने कुछ और ही सोचा था,\nऔर वह दूर चली गई, पर दिल में रह गई।"
+    },
+    {
+      "slug": "zamana-chod-diya",
+      "title": "Zamana Chhod Diya",
+      "translation": "The world let go of me",
+      "language": "Hindi / Urdu",
+      "script": "devanagari",
+      "chapter": "longing",
+      "text": "ज़माना छोड़ दिया मेरा साथ,\nशाम-ए-ग़म ने दिया मुझे हाथ।\nक़िस्मत यूँ बदल गई मेरी,\nजब देखी मैंने चेहरा तेरी।\n\nतेरी मुस्कुराहट ने सदा सुनाई,\nतेरे प्यार में हर रात लगाई।\nतेरी याद में रातें हों बिताई,\nतेरी ख़ुशी ही मेरी ख़ुशी आई।"
+    },
+    {
+      "slug": "purani-aadat",
+      "title": "Purani Aadat",
+      "translation": "An old habit",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "longing",
+      "text": "Teri khamoshi mein ab meri awaaz kyun nahi rehti…\nKya main ab bhi teri zindagi ka hissa hoon,\nYa sirf ek purani aadat?"
+    },
+    {
+      "slug": "she-stood-like-the-sun",
+      "title": "She Stood Like the Sun",
+      "language": "English",
+      "script": "latin",
+      "chapter": "longing",
+      "unfinished": true,
+      "text": "She stood like the sun, steady and bright,\nWhile I, a dreamer, lost in my night.\nHer words were simple, her heart was kind,\nBut I wove stories within my mind.\n\nShe offered friendship, a bond so pure,\nYet I dreamed of a life, of something more.\nHer laughter, her presence, a gentle breeze,\nBut I chased horizons she…"
+    },
+    {
+      "slug": "a-love-unsaid",
+      "title": "A Love Unsaid",
+      "language": "English",
+      "script": "latin",
+      "chapter": "longing",
+      "unfinished": true,
+      "text": "The words I never dared to tell,\nStill linger where my heart once fell.\nIf time could give a second chance,\nI…"
+    },
+    {
+      "slug": "if-i-see-you-again",
+      "title": "If I See You Again",
+      "language": "English",
+      "script": "latin",
+      "chapter": "heartbreak",
+      "text": "If I see you again,\nwill I be the storm that learned your name,\nor the silence that forgot your face?\n\nWill I hate you\nfor the nights that stitched loneliness into my skin,\nor love you harder\nbecause some wounds bloom instead of fade?\n\nWill I fight you\nwith every shattered promise we left behind,\nor fight for you\nlike a fool chasing a sunrise that never waits?\n\nPerhaps I’ll walk away,\nleaving your shadow to haunt empty streets,\nwhile my heart lingers behind,\nstill calling yours in a language broken by goodbye.\n\nI want you.\nThat is my sweetest tragedy.\n\nI fear you.\nThat is my cruelest truth.\n\nBecause loving you\nfelt like holding a flame in winter.\nIt kept me alive\nwhile quietly turning me to ash.\n\nSo if fate is reckless enough\nto let our eyes meet again,\n\ndon’t ask what I’ll choose.\n\nMy heart has buried you a thousand times,\nyet every lonely night\nit still kneels beside your memory,\nplacing fresh flowers\non a love that never learned how to die."
+    },
+    {
+      "slug": "mohabbat-ka-ilzaam",
+      "title": "Mohabbat Ka Ilzaam",
+      "translation": "The charge of love",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "heartbreak",
+      "text": "Mohabbat ka ilzaam sab seh liya,\nDil bechara khud hi lut gaya.\nJis haath ne ujaale diye the mujhe,\nUssi haath ne aag bhi laga diya.\n\nEk pal mein sajaya tha jo dil ka shehar,\nWohi pal mein usne mita bhi diya.\nWafa ki raahon mein chhod kar mujhe,\nWoh khud hi khuda ban gaya."
+    },
+    {
+      "slug": "dawa-se-bhi-darta-hoon",
+      "title": "Dawa Se Bhi Darta Hoon",
+      "translation": "Now I fear even the cure",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "heartbreak",
+      "text": "Dard aisa zehar diya mujhe,\nKe ab dawa se bhi darta hoon.\nShab-e-gham mein tanha bhatakta hoon,\nKe ab har nayi subah se darta hoon.\n\nBhool jaane ka waqt aaya,\nTo sajdon mein usi ko yaad karta hoon.\nJise kab ka kho chuka hoon,\nAaj bhi usi pe marta hoon."
+    },
+    {
+      "slug": "yehi-meri-wafa-hai",
+      "title": "Yehi Meri Wafa Hai",
+      "translation": "This is my faithfulness",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "heartbreak",
+      "text": "Pyaar mein Khuda jo dekh liya maine,\nHar sajde mein tera noor dekh liya maine.\n\nJaane waalon ko na roka,\nLekin unki khushiyon ki hifazat ki maine.\nApni hasraton ko dafan karke,\nUnki muskurahat ki ibaadat ki maine.\n\nIshq agar yehi hai…\nTo yehi meri dua hai…\nDard agar yehi hai…\nTo yehi meri wafa hai…\n\nHar din aur har raat,\nYunhi jee liya maine.\nHar saans mein uska naam,\nKhamoshi se le liya maine.\n\nYe kaisi mohabbat likhi tune…\nJeete ji qabr dikha di tune…\n\nNa usse shikayat hai,\nNa tujhe ilzaam deta hoon.\nBas itna samajh na paaya,\nMohabbat ka anjaam kyun deta hoon.\n\nLog kehte hain,\nWaqt sab kuch bhula deta hai.\nMujhe to har guzarta lamha,\nUski yaad aur gehri kar deta hai."
+    },
+    {
+      "slug": "khamoshi-hi-meri-zubaan",
+      "title": "Khamoshi Hi Meri Zubaan",
+      "translation": "Silence is my only language",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "heartbreak",
+      "text": "Main ab unhe awaaz nahin deta hoon…\nKyun? Kyunki agar woh mud kar aa gaye,\nTo main unki khushi ka qaatil ban jaunga.\nAur agar na aaye…\nTo qayamat tak aise hi bikhar jaunga.\n\nIsliye…\nAb yeh khamoshi hi meri zubaan hai…\nIntezaar hi meri zindagi…\nAur dard hi meri pehchaan…"
+    },
+    {
+      "slug": "aansuon-se-likha",
+      "title": "Aansuon Se Likha",
+      "translation": "Written in tears",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "heartbreak",
+      "text": "Main usko aansuon se likh raha hoon,\nTaaki mere baad koi aur na padh paaye."
+    },
+    {
+      "slug": "main-hoon-kaun",
+      "title": "Main Hoon Kaun",
+      "translation": "Who am I",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "the-self",
+      "text": "Aakhir main hoon kaun, sab karne ki zid pe ada hua bachcha,\nYa waqt ke haathon haar gaya, khud se hi lada hua bachcha.\nKhwahishein toh hazaar hain, par haathon mein kuch bhi nahi,\nMain woh insaan hoon jo jeena chahta hai… par jee nahi raha kabhi."
+    },
+    {
+      "slug": "the-monster",
+      "title": "The Monster",
+      "language": "English",
+      "script": "latin",
+      "chapter": "the-self",
+      "text": "I was never the monster they painted in flame,\nJust a whisper of truth with a villain’s name.\nIn shadows I walked where their judgments grew,\nBut the darkness they feared was the light I knew."
+    },
+    {
+      "slug": "the-morning",
+      "title": "The Morning",
+      "language": "English",
+      "script": "latin",
+      "chapter": "the-self",
+      "text": "Each morning I wake with a weight on my chest,\nA life still breathing, a heart laid to rest.\nThe sun drags the day through a colorless sky,\nWhile something inside me quietly dies.\n\nThe hours crawl past like a slow bleeding wound,\nA life half-lived in a hollow cocoon.\nNo scream, no fire, no thunder to prove,\nJust time carving pieces of me as it moves.\n\nAnd night always comes like a cold, final thief,\nCounting the ruins of another day’s grief.\nThen sleep takes the rest of whatever was left,\nSo morning can wake me… a little more dead."
+    },
+    {
+      "slug": "alone-i-stand",
+      "title": "Alone I Stand",
+      "language": "English",
+      "script": "latin",
+      "chapter": "the-self",
+      "text": "Alone I stand, with heart in hand,\nHoping someone will understand.\nA quiet soul, a silent plea,\nTo see the real side of me.\n\nIn crowds of many, I feel so lost,\nThe price of solitude, that I paid the cost.\nLooking for a soul who cares so deep,\nSomeone to hold me, to make me weep.\n\nWith joy, not sorrow, but from the core,\nSomeone who will love me forevermore.\nA companion, a friend, a soulmate true,\nSomeone to turn my grey skies blue.\n\nUntil that day, I’ll wait and see,\nIf someone’s out there meant for me."
+    },
+    {
+      "slug": "main-duniya-ko-samajh-chuka-hoon",
+      "title": "Main Duniya Ko Samajh Chuka Hoon",
+      "translation": "I have understood the world",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "the-self",
+      "text": "Main duniya ko samajh chuka hoon,\nHar raaz, har kahani jaan chuka hoon.\nPhir bhi dhokha khaakar haar gaya hoon."
+    },
+    {
+      "slug": "the-pursuit",
+      "title": "The Pursuit",
+      "language": "English",
+      "script": "latin",
+      "chapter": "the-self",
+      "unfinished": true,
+      "text": "We chase the horizon, forever seeking the new,\nNever satisfied with the beauty we…"
+    },
+    {
+      "slug": "rise-and-reach",
+      "title": "Rise and Reach",
+      "language": "English",
+      "script": "latin",
+      "chapter": "hope",
+      "text": "Rain or sky, don’t let a day slip by,\nKeep moving forward, reach for what’s high.\nThrough every challenge, through every fight,\nPush ahead—chase and embrace the light.\n\nWhen clouds hang low and the world feels slow,\nRise above, let your spirit glow.\nNo day is wasted, no time stands still,\nKeep climbing higher and trust your will.\n\nWhen shadows linger and winds grow strong,\nStand your ground for you’ve been brave all along.\nNo time is lost, no dream will fade,\nRise with courage and be unafraid.\n\nSo keep on going, reach for the height,\nFor rain or sky, never let a day slip by."
+    },
+    {
+      "slug": "i-was-in-darkness",
+      "title": "I Was in Darkness",
+      "language": "English",
+      "script": "latin",
+      "chapter": "hope",
+      "unfinished": true,
+      "text": "I was in darkness, wanted to be alone,\nBut by your light, a warmth was shown.\nYou…"
+    },
+    {
+      "slug": "mahanati",
+      "title": "తను ఆకాశ వీధిలో అందాల జాబిలి",
+      "translation": "Anaganaga oka Mahanati — a tribute to Savitri",
+      "language": "Telugu",
+      "script": "telugu",
+      "chapter": "tribute",
+      "text": "ఒక పాత్రతో వర్ణించలేము...\nఒక మాటతో చెప్పలేము...\nఆమె గురించి రాయాలంటే\nజ్ఞాపకాలే కలం పట్టాలి.\n\nనవ్వితే వెన్నెల కూడా\nతన వెలుగును మరిచిపోయేది.\nఏడిస్తే తెర ముందు కూర్చున్న\nప్రతి హృదయం తడిసిపోయేది.\n\nఆమె కళ్లలో మాటలుండేవి,\nఆమె మౌనంలో కథలుండేవి.\nఆమె తెరపై కనిపిస్తే\nఒక పాత్ర కాదు...\nఒక జీవితం కనిపించేది.\n\nఆమె అందాన్ని వర్ణించడానికి\nకవులకు పదాలు చాలలేదు.\nఆమెను గానంలో బంధించడానికి\nగాయకులకు పాటలు చాలలేదు.\nఆమె నటనను కొలవడానికి\nకాలానికి సంవత్సరాలు చాలలేదు.\n\nఎన్నో పేర్లు\nకాలనదిలో అలలా వచ్చి వెళ్లిపోయాయి...\nకానీ కొన్ని పేర్లు మాత్రమే\nకాలం అనే పుస్తకంలో\nచెరిగిపోని అక్షరాలవుతాయి.\n\nఎప్పుడు ఎక్కడ పాత సినిమా చూసినా\nఒక జ్ఞాపకమై వస్తుంది.\nపాత పాట వినిపించినా\nఒక రూపమై కళ్లముందు నిలుస్తుంది.\n\nఆమెను తలుచుకుంటే అనిపిస్తుంది...\nకొంతమంది మనుషులు\nభూమిపై కొన్నేళ్లు మాత్రమే ఉంటారు,\nకానీ మనసుల్లో మాత్రం\nశాశ్వతంగా ఉండిపోతారు అని.\n\nబిరుదులు ఎన్ని వచ్చినా,\nగౌరవాలు ఎన్ని దక్కినా,\nకథను పైవాడు ఎలా రాసినా,\nజీవితాన్ని కాలం ఎలా మలిచినా,\nతను మాత్రం\nమర్చిపోలేని ఒక అందమైన స్మృతి.\n\nదేవదాసులో పార్వతిగా,\nమిస్సమ్మలో మేరీగా,\nమాయాబజార్‌లో సుందరిగా,\nప్రతి హృదయంలో చిరస్థాయిగా.\n\nతను ఆకాశ వీధిలో అందాల జాబిలి...\nఅనగనగా ఒక మహానటి."
+    }
+  ],
+  "chapters": [
+    {
+      "slug": "love",
+      "numeral": "I",
+      "title": "Love",
+      "epigraph": "First glances, quiet devotion, and the madness of loving someone.",
+      "palette": [
+        "#f2b8a2",
+        "#c9546a",
+        "#2a0b16"
+      ],
+      "glyph": "❦"
+    },
+    {
+      "slug": "longing",
+      "numeral": "II",
+      "title": "Longing",
+      "epigraph": "Waiting, remembering, and the ache of what might have been.",
+      "palette": [
+        "#b8c7f2",
+        "#5a6fb8",
+        "#0a1030"
+      ],
+      "glyph": "☾"
+    },
+    {
+      "slug": "heartbreak",
+      "numeral": "III",
+      "title": "Heartbreak",
+      "epigraph": "Loss, silence, and a love that never learned how to die.",
+      "palette": [
+        "#e8848a",
+        "#8e1b2a",
+        "#1a0406"
+      ],
+      "glyph": "✕"
+    },
+    {
+      "slug": "the-self",
+      "numeral": "IV",
+      "title": "The Self",
+      "epigraph": "Who am I — the monster, the morning, and the one who stands alone.",
+      "palette": [
+        "#cfd2d8",
+        "#6d7280",
+        "#0d0e12"
+      ],
+      "glyph": "◐"
+    },
+    {
+      "slug": "hope",
+      "numeral": "V",
+      "title": "Hope",
+      "epigraph": "Rain or sky, rise and reach.",
+      "palette": [
+        "#ffd9a0",
+        "#e08a3c",
+        "#2a1406"
+      ],
+      "glyph": "☀"
+    },
+    {
+      "slug": "tribute",
+      "numeral": "VI",
+      "title": "Tribute",
+      "epigraph": "For Mahanati Savitri — a memory that time cannot erase.",
+      "palette": [
+        "#f3e4b5",
+        "#b8973f",
+        "#1c1608"
+      ],
+      "glyph": "✦"
+    }
+  ],
+  "fragments": [
+    {
+      "line": "some wounds bloom instead of fade",
+      "slug": "if-i-see-you-again"
+    },
+    {
+      "line": "The stars above still spell your name",
+      "slug": "echoes-of-you"
+    },
+    {
+      "line": "a love that never learned how to die",
+      "slug": "if-i-see-you-again"
+    },
+    {
+      "line": "To me, she’s the sun, the stars, the night.",
+      "slug": "thousands-see-her"
+    },
+    {
+      "line": "the darkness they feared was the light I knew",
+      "slug": "the-monster"
+    },
+    {
+      "line": "Main usko aansuon se likh raha hoon",
+      "slug": "aansuon-se-likha"
+    },
+    {
+      "line": "I miss you more, I always will.",
+      "slug": "the-night-goes-on"
+    },
+    {
+      "line": "like holding a flame in winter",
+      "slug": "if-i-see-you-again"
+    },
+    {
+      "line": "Ya sirf ek purani aadat?",
+      "slug": "purani-aadat"
+    },
+    {
+      "line": "Maut bhi muskura uthi, jab tujhmein fana ho gaye",
+      "slug": "junoon-ka-aisa-aalam"
+    },
+    {
+      "line": "Rise with courage and be unafraid.",
+      "slug": "rise-and-reach"
+    },
+    {
+      "line": "So morning can wake me… a little more dead.",
+      "slug": "the-morning"
+    },
+    {
+      "line": "Now fades into the endless night.",
+      "slug": "fading-footsteps"
+    },
+    {
+      "line": "Khamoshi hi meri zubaan hai",
+      "slug": "khamoshi-hi-meri-zubaan"
+    }
+  ],
+  "socials": [
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "handle": "@tedious.one",
+      "href": "https://www.instagram.com/tedious.one"
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "handle": "Sai Pranay Tadakamalla",
+      "href": "https://www.linkedin.com/in/sai-pranay-tadakamalla-7570bb1a6/"
+    },
+    {
+      "id": "portfolio",
+      "label": "Portfolio",
+      "handle": "pranaytadakamalla.vercel.app",
+      "href": "https://pranaytadakamalla.vercel.app/"
+    },
+    {
+      "id": "writing",
+      "label": "Writing",
+      "handle": "more writing",
+      "href": "https://pranaytadakamalla.vercel.app/writing"
+    }
+  ],
+  "images": {
+    "portrait": {
+      "src": "/images/pranay.webp",
+      "alt": "Sai Pranay Tadakamalla, thoughtful, at a desk by a window"
+    },
+    "illustrated": {
+      "src": "/images/illustrated.webp",
+      "alt": "An illustrated self-portrait holding a bouquet of flowers"
+    }
+  },
+  "copy": {
+    "loader": {
+      "whispers": [
+        "every verse begins in silence",
+        "then, a glance",
+        "then, the ache",
+        "and the words arrive"
+      ],
+      "drying": "the ink is still drying…"
+    },
+    "hero": {
+      "label": "Poems & verses · written after midnight",
+      "tagline": "Poems of love, longing, and the quiet ache between — in English, Hindi–Urdu & Telugu.",
+      "stanza": [
+        "for the ones who stayed,",
+        "the ones who left,",
+        "and the ones who never knew."
+      ],
+      "hint": "Touch a drifting line to read it"
+    },
+    "prologue": {
+      "label": "Prologue",
+      "text": "I write what I cannot say out loud. These are small confessions — of a *glance* that became a *flame*, of a *lamp* of *waiting* that never went out, of mornings that woke me a little more *dead*, and of a *love* that never learned how to *die*.",
+      "signature": "— S. P. T."
+    },
+    "reel": {
+      "label": "Turn the pages slowly",
+      "title": "Chapters",
+      "accent": "of a heart"
+    },
+    "slowPoem": {
+      "poem": "if-i-see-you-again",
+      "lines": [
+        "Because loving you",
+        "felt like holding a flame in winter.",
+        "It kept me alive",
+        "while quietly turning me to ash.",
+        "My heart has buried you a thousand times,",
+        "yet every lonely night",
+        "it still kneels beside your memory,",
+        "placing fresh flowers",
+        "on a love that never learned how to die."
+      ]
+    },
+    "skyTeaser": {
+      "label": "An index written in stars",
+      "title": "Every poem",
+      "accent": "is a star.",
+      "text": "Each one a small light, gathered into constellations of the heart. Turn the night, drift toward a feeling, and touch a light to read what it holds."
+    },
+    "sky": {
+      "hint": "Turn the night · touch a light to read",
+      "line": "Every light up here is a poem. The longer it aches, the brighter it burns."
+    },
+    "poet": {
+      "label": "The one who wrote them",
+      "text": "A notebook, a sleepless night, and every language the heart could find — all trying to say one thing. Once an old hobby, kept here so these verses never quietly disappear.",
+      "caption": "somewhere between two lines"
+    },
+    "index": {
+      "label": "Index of the heart",
+      "line": "Written across sleepless years, in every language the heart could find.",
+      "empty": "No poem holds that word — yet."
+    },
+    "about": {
+      "lede": "A notebook, a sleepless night, and every language I know — all trying to say one thing.",
+      "storyLabel": "Of the one who wrote",
+      "story": [
+        "I started writing the way most people do — to survive a feeling that had nowhere else to go. A glance that became a flame. A friendship I wished were something more. A morning heavier than the night before it.",
+        "Some poems arrived in *English*. Some only knew how to be said in *Hindi and Urdu*. And one came in *Telugu*, for Savitri — the Mahanati, whose films outlived their decades.",
+        "This was an old hobby, and I hadn’t opened these notebooks in months. But a poem left unread is a lamp left unlit. So here they are — every one of them, even the ones that stop mid-sentence — *set in motion*."
+      ],
+      "interlude": [
+        "Some of these poems end mid‑sentence.",
+        "Some feelings do too."
+      ],
+      "tonguesLabel": "The tongues of one heart",
+      "tongues": [
+        {
+          "name": "English",
+          "sample": "The stars above still spell your name,",
+          "note": "for the things I could say",
+          "script": "latin"
+        },
+        {
+          "name": "हिन्दी · اردو",
+          "sample": "Main usko aansuon se likh raha hoon,",
+          "note": "for the things only these words hold",
+          "script": "latin"
+        },
+        {
+          "name": "తెలుగు",
+          "sample": "తను ఆకాశ వీధిలో అందాల జాబిలి...",
+          "note": "for a memory time cannot erase",
+          "script": "telugu"
+        }
+      ],
+      "elsewhereLabel": "Find me elsewhere",
+      "photoHint": "Hover or tap — the one I imagine"
+    },
+    "unfinished": {
+      "label": "— unfinished —",
+      "text": "The poem ends where the notebook does. The rest is still unwritten — or still being felt."
+    },
+    "footer": {
+      "label": "Before you go",
+      "title": "Stay",
+      "accent": "a while",
+      "quote": "“My heart has buried you a thousand times, yet every lonely night it still kneels beside your memory.”",
+      "right": "Written in notebooks · Set in motion"
+    }
+  }
+}

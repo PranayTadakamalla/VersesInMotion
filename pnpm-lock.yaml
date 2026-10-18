@@ -41,6 +41,12 @@ importers:
       react-dom:
         specifier: 19.2.0
         version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+      sharp:
+        specifier: 0.35.4
+        version: 0.35.4(@types/node@22.20.4)
       three:
         specifier: 0.180.0
         version: 0.180.0
@@ -63,9 +69,6 @@ importers:
       postcss:
         specifier: ^8.5.28
         version: 8.5.28
-      sharp:
-        specifier: ^0.35.4
-        version: 0.35.4(@types/node@22.20.4)
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -837,6 +840,9 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
+
   sharp@0.35.4:
     resolution: {integrity: sha512-n++8XWcj+jCOr2IOl7h8LbKnGBDY4aPbmprMONBNFdn0ImXqpGVv5zliDs0V9HbmbCQLpbuo2ej9rAoOQTvMDA==}
     engines: {node: '>=20.9.0'}
@@ -1586,6 +1592,8 @@ snapshots:
   scheduler@0.28.0: {}
 
   semver@7.8.5: {}
+
+  server-only@0.0.1: {}
 
   sharp@0.35.4(@types/node@22.20.4):
     dependencies:

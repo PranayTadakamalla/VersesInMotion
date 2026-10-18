@@ -1,10 +1,7 @@
-export const SOCIALS = {
-  instagram: { label: "Instagram", handle: "@tedious.one", href: "https://www.instagram.com/tedious.one" },
-  linkedin: {
-    label: "LinkedIn",
-    handle: "Sai Pranay Tadakamalla",
-    href: "https://www.linkedin.com/in/sai-pranay-tadakamalla-7570bb1a6/",
-  },
-  portfolio: { label: "Portfolio", handle: "pranaytadakamalla.vercel.app", href: "https://pranaytadakamalla.vercel.app/" },
-  writing: { label: "Writing", handle: "more writing", href: "https://pranaytadakamalla.vercel.app/writing" },
-} as const;
+import { site } from "./content";
+import type { Social } from "./schema";
+
+export const SOCIAL_LIST: Social[] = site.socials;
+
+/** Look a link up by its id (instagram, linkedin, …). */
+export const social = (id: string) => SOCIAL_LIST.find((s) => s.id === id);
