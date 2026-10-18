@@ -4,11 +4,13 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const TEXT =
-  "I write what I cannot say out loud. These are small confessions — of a glance that became a flame, of a lamp of waiting that never went out, of mornings that woke me a little more dead, and of a love that never learned how to die.";
+import { copy } from "@/lib/content";
 
-// words that burn a little brighter than the rest
-const EMBERS = new Set(["glance", "flame,", "lamp", "waiting", "dead,", "love", "die."]);
+// *words between asterisks* burn a little brighter than the rest
+const WORDS = copy.prologue.text.split(/\s+/).filter(Boolean).map((w) => {
+  const m = w.match(/^([^*]*)\*([^*]+)\*(.*)$/);
+  return m ? { pre: m[1], word: m[2], post: m[3], ember: true } : { pre: "", word: w, post: "", ember: false };
+});
 
 export default function Prologue() {
   const ref = useRef<HTMLParagraphElement>(null);
@@ -37,21 +39,18 @@ export default function Prologue() {
     <section className="relative px-5 py-40 md:px-10 md:py-56">
       <div className="mx-auto max-w-6xl">
         <p className="label mb-10 flex items-center gap-4">
-          <span className="inline-block h-px w-12 bg-ember/70" /> Prologue
+          <span className="inline-block h-px w-12 bg-ember/70" /> {copy.prologue.label}
         </p>
         <p ref={ref} className="font-display text-[8.5vw] leading-[1.08] tracking-tight text-bone md:text-[4.6vw]">
-          {TEXT.split(" ").map((w, i) => (
-            <span
-              key={i}
-              data-w
-              className={EMBERS.has(w) ? "italic-serif text-ember" : undefined}
-              style={{ display: "inline-block", marginRight: "0.25em" }}
-            >
-              {w}
+          {WORDS.map((w, i) => (
+            <span key={i} data-w style={{ display: "inline-block", marginRight: "0.25em" }}>
+              {w.pre}
+              {w.ember ? <span className="italic-serif text-ember">{w.word}</span> : w.word}
+              {w.post}
             </span>
           ))}
         </p>
-        <p className="label mt-12 text-right">— S. P. T.</p>
+        <p className="label mt-12 text-right">{copy.prologue.signature}</p>
       </div>
     </section>
   );

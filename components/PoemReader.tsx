@@ -7,6 +7,7 @@ import { motion, useScroll, useSpring } from "motion/react";
 import clsx from "clsx";
 import { SplitReveal } from "./ui";
 import { useSite } from "./Providers";
+import { copy } from "@/lib/content";
 import { stanzas, type Chapter, type Poem } from "@/lib/poems";
 
 const InkSky = dynamic(() => import("./three/InkSky"), { ssr: false });
@@ -212,9 +213,9 @@ export default function PoemReader({
             viewport={{ once: true }}
             transition={{ duration: 1.6 }}
           >
-            <p className="label !text-ember">— unfinished —</p>
+            <p className="label !text-ember">{copy.unfinished.label}</p>
             <p className="italic-serif mt-3 text-xl text-bone/55">
-              The poem ends where the notebook does. The rest is still unwritten — or still being felt.
+              {copy.unfinished.text}
             </p>
           </motion.div>
         ) : (

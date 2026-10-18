@@ -5,21 +5,12 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import InView from "../InView";
 import { PillLink } from "../ui";
-import { getChapter } from "@/lib/poems";
+import { getChapter, getPoem } from "@/lib/poems";
+import { copy } from "@/lib/content";
 
 const InkSky = dynamic(() => import("../three/InkSky"), { ssr: false });
 
-const LINES = [
-  "Because loving you",
-  "felt like holding a flame in winter.",
-  "It kept me alive",
-  "while quietly turning me to ash.",
-  "My heart has buried you a thousand times,",
-  "yet every lonely night",
-  "it still kneels beside your memory,",
-  "placing fresh flowers",
-  "on a love that never learned how to die.",
-];
+const LINES = copy.slowPoem.lines;
 
 function Line({ text, i, progress }: { text: string; i: number; progress: MotionValue<number> }) {
   const n = LINES.length;
@@ -47,7 +38,9 @@ export default function SlowPoem() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const cta = useTransform(scrollYProgress, [0.88, 0.98], [0, 1]);
-  const palette = getChapter("heartbreak")!.palette;
+  const poem = getPoem(copy.slowPoem.poem)!;
+  const chapter = getChapter(poem.chapter)!;
+  const palette = chapter.palette;
 
   return (
     <section ref={ref} className="relative h-[420vh]">
@@ -57,14 +50,16 @@ export default function SlowPoem() {
         </InView>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink via-transparent to-ink" />
         <div className="relative mx-auto w-full max-w-4xl px-5 md:px-10">
-          <p className="label mb-10">III · Heartbreak — If I See You Again</p>
+          <p className="label mb-10">
+            {chapter.numeral} · {chapter.title} — {poem.title}
+          </p>
           <div className="space-y-1">
             {LINES.map((l, i) => (
               <Line key={i} text={l} i={i} progress={scrollYProgress} />
             ))}
           </div>
           <motion.div className="mt-12" style={{ opacity: cta }}>
-            <PillLink href="/poems/if-i-see-you-again" variant="ghost" cursor="read">
+            <PillLink href={`/poems/${poem.slug}`} variant="ghost" cursor="read">
               Read the whole poem
             </PillLink>
           </motion.div>

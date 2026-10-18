@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useSite } from "../Providers";
 import { PillLink, SplitReveal } from "../ui";
+import { copy } from "@/lib/content";
 
 const HeroScene = dynamic(() => import("../three/HeroScene"), { ssr: false });
 
@@ -36,7 +37,7 @@ export default function Hero() {
           animate={ready ? { opacity: 1 } : {}}
           transition={{ duration: 1.5, delay: 1.4 }}
         >
-          Poems &amp; verses · written after midnight
+          {copy.hero.label}
         </motion.p>
 
         <div>
@@ -57,7 +58,7 @@ export default function Hero() {
             animate={ready ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, delay: 1.5, ease: silk }}
           >
-            {["for the ones who stayed,", "the ones who left,", "and the ones who never knew."].map((l) => (
+            {copy.hero.stanza.map((l) => (
               <p key={l} className="italic-serif text-lg leading-relaxed text-bone/65 md:text-xl">
                 {l}
               </p>
@@ -71,7 +72,7 @@ export default function Hero() {
             transition={{ duration: 1.2, delay: 1.7, ease: silk }}
           >
             <p className="italic-serif mb-6 text-xl leading-snug text-bone/80 md:text-2xl">
-              Poems of love, longing, and the quiet ache between — in English, Hindi–Urdu &amp; Telugu.
+              {copy.hero.tagline}
             </p>
             <div className="flex flex-wrap gap-3">
               <PillLink href="/poems">Begin reading</PillLink>
@@ -79,7 +80,7 @@ export default function Hero() {
                 Wander the sky
               </PillLink>
             </div>
-            <p className="label mt-5 !text-[0.6rem] !text-bone/40">Touch a drifting line to read it</p>
+            <p className="label mt-5 !text-[0.6rem] !text-bone/40">{copy.hero.hint}</p>
           </motion.div>
         </div>
       </motion.div>

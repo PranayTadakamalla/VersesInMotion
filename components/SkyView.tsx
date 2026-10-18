@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { useSite } from "./Providers";
 import { SplitReveal } from "./ui";
 import { chapters, type ChapterSlug } from "@/lib/poems";
+import { copy } from "@/lib/content";
 
 const Constellation = dynamic(() => import("./three/Constellation"), { ssr: false });
 
@@ -24,7 +25,7 @@ export default function SkyView() {
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-[#04040a] via-[#04040a]/80 to-transparent px-5 pb-16 pt-24 md:bg-none md:px-10 md:pt-32">
-        <p className="label mb-3 md:mb-4">Turn the night · touch a light to read</p>
+        <p className="label mb-3 md:mb-4">{copy.sky.hint}</p>
         <h1 className="display text-6xl text-bone md:text-9xl">
           <SplitReveal text="The Sky" play={ready} stagger={0.06} />
         </h1>
@@ -35,7 +36,7 @@ export default function SkyView() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {current ? current.epigraph : "Every light up here is a poem. The longer it aches, the brighter it burns."}
+          {current ? current.epigraph : copy.sky.line}
         </motion.p>
       </div>
 

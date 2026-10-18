@@ -31,3 +31,36 @@ pnpm build      # static production build
 
 The poems live in `lib/poems.ts`. Add a poem there and it appears everywhere: the index, its chapter, the sky, and its own page.
 Social links live in `lib/site.ts`.
+
+## The Curator (`/curator`)
+
+A private studio for running the site without touching code. You can:
+- write, edit, reorder and remove poems, with a live preview in the right script
+- create chapters and rename or recolour them
+- choose the lines that drift through the hero sky
+- change every sentence on the site
+- edit the links
+- upload new pictures
+
+It isn't linked anywhere, is hidden from search engines, and only exists once its secrets are set.
+
+**How publishing works.** Everything the site shows lives in `content/site.json`. When you press **Publish**, the Curator checks the content is valid, then commits that file to GitHub. Vercel then rebuilds the site, which takes about a minute. Every change is a commit, so any change can be undone from the history. Unpublished drafts are kept in your browser until you publish or discard them.
+
+**Setup.** Add these in Vercel → Project → Settings → Environment Variables (Production), then redeploy:
+
+| Variable | What it is |
+| --- | --- |
+| `CURATOR_EMAIL` | the sign-in email |
+| `CURATOR_PASSWORD_HASH` | `scrypt:N:r:p:salt:hash` — never the password itself |
+| `CURATOR_SESSION_SECRET` | 64 random hex characters; changing it signs everyone out |
+| `GITHUB_TOKEN` | fine-grained token for this repo only, with **Contents: Read and write** |
+
+`GITHUB_REPO` (default `PranayTadakamalla/VersesInMotion`) and `GITHUB_BRANCH` (default `main`) are optional.
+
+To make a password hash:
+
+```bash
+node -e 'const c=require("crypto"),s=c.randomBytes(16),N=32768,r=8,p=1;console.log(`scrypt:${N}:${r}:${p}:${s.toString("base64")}:${c.scryptSync(process.argv[1],s,32,{N,r,p,maxmem:2**28}).toString("base64")}`)' 'your-password'
+```
+
+**Local mode.** In local development without `GITHUB_TOKEN`, Publish writes to your working copy instead of GitHub. Put the Curator variables in `.env.local`, which git ignores.

@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useSite } from "./Providers";
 
-const WHISPERS = ["every verse begins in silence", "then, a glance", "then, the ache", "and the words arrive"];
+import { copy } from "@/lib/content";
+
+const WHISPERS = copy.loader.whispers;
 
 /**
  * The opening ritual: a moon draws itself while the counter climbs,
@@ -158,7 +160,7 @@ export default function Loader() {
           <div className="absolute bottom-8 left-6 right-6 flex items-end justify-between md:left-10 md:right-10">
             <p className="label">Verses in Motion</p>
             <div className="flex w-40 flex-col items-end gap-3 md:w-64">
-              <p className="italic-serif text-lg text-bone/60 md:text-xl">the ink is still drying…</p>
+              <p className="italic-serif text-lg text-bone/60 md:text-xl">{copy.loader.drying}</p>
               <div className="h-px w-full bg-bone/10">
                 <div className="h-px w-full origin-left bg-ember" style={{ transform: `scaleX(${progress})` }} />
               </div>

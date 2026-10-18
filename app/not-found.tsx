@@ -1,7 +1,9 @@
 import Link from "next/link";
+import SiteLayout from "./(site)/layout";
 
 export default function NotFound() {
   return (
+    <SiteLayout>
     <section className="flex min-h-[100svh] flex-col items-center justify-center px-5 text-center">
       <p className="label mb-8">404 · a page that was never written</p>
       <h1 className="display text-7xl text-bone md:text-9xl">
@@ -14,5 +16,6 @@ export default function NotFound() {
         Find your way back →
       </Link>
     </section>
+    </SiteLayout>
   );
 }
