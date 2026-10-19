@@ -27,6 +27,60 @@ type Tab = (typeof TABS)[number]["id"];
 
 const DRAFT_KEY = "vim-curator-draft";
 
+type Diagnosis = {
+  repo: string;
+  branch: string;
+  token: { present: boolean; kind: string; length: number };
+  checks: { label: string; ok: boolean | null; detail: string }[];
+};
+
+/** Asks the server what GitHub thinks of the publishing token, and shows it as a checklist. */
+function ConnectionCheck() {
+  const [d, setD] = useState<Diagnosis | null>(null);
+  const [busy, setBusy] = useState(false);
+  const run = async () => {
+    setBusy(true);
+    const res = await fetch("/api/curator/health", { cache: "no-store" }).catch(() => null);
+    setD(res?.ok ? await res.json() : null);
+    setBusy(false);
+  };
+  useEffect(() => {
+    void run();
+  }, []);
+  return (
+    <div className="mt-10 border border-bone/10 p-6 text-left">
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <p className="label">Connection to GitHub</p>
+        <Btn tone="quiet" onClick={() => void run()} disabled={busy}>
+          {busy ? "checking…" : "check again"}
+        </Btn>
+      </div>
+      {!d ? (
+        <p className="italic-serif text-bone/50">{busy ? "asking GitHub…" : "Couldn't run the check."}</p>
+      ) : (
+        <>
+          <p className="mb-4 font-mono text-xs text-bone/45">
+            {d.repo} · branch {d.branch} · token: {d.token.present ? `${d.token.kind}, ${d.token.length} characters` : "not set"}
+          </p>
+          <ul className="space-y-3">
+            {d.checks.map((c) => (
+              <li key={c.label} className="flex gap-3">
+                <span className={clsx("mt-0.5 w-5 shrink-0 text-center", c.ok === true ? "text-ember" : c.ok === false ? "text-rose" : "text-bone/40")}>
+                  {c.ok === true ? "✓" : c.ok === false ? "✕" : "·"}
+                </span>
+                <span>
+                  <span className="block font-serif text-lg text-bone">{c.label}</span>
+                  <span className="block font-serif text-base italic text-bone/55">{c.detail}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  );
+}
+
 /** A short, human summary of what changed — becomes the commit message. */
 function summarise(base: SiteContent, draft: SiteContent) {
   const parts: string[] = [];
@@ -167,7 +221,7 @@ export default function Studio() {
   if (loadError)
     return (
       <Shell>
-        <div className="mx-auto max-w-lg py-32 text-center">
+        <div className="mx-auto max-w-xl px-5 py-24 text-center">
           <p className="display text-4xl text-bone">The ink won’t come.</p>
           <p className="italic-serif mt-4 text-xl text-bone/60">{loadError}</p>
           <div className="mt-8 flex justify-center gap-3">
@@ -176,6 +230,7 @@ export default function Studio() {
             </Btn>
             <Btn onClick={signOut}>Sign out</Btn>
           </div>
+          <ConnectionCheck />
         </div>
       </Shell>
     );
@@ -232,6 +287,13 @@ export default function Studio() {
             </ul>
           </div>
         ) : null}
+        {notice?.tone === "err" && mode === "github" && (
+          <div className="border-t border-rose/30 px-4 pb-4 md:px-8">
+            <div className="mx-auto max-w-[1500px]">
+              <ConnectionCheck />
+            </div>
+          </div>
+        )}
         {notice && (
           <div className={clsx("border-t px-4 py-3 md:px-8", notice.tone === "ok" ? "border-ember/30 bg-ember/10" : "border-rose/30 bg-rose/10")}>
             <p className={clsx("mx-auto flex max-w-[1500px] flex-wrap items-center gap-3 font-serif text-base", notice.tone === "ok" ? "text-ember" : "text-rose")}>
