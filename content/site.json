@@ -1,6 +1,15 @@
 {
   "poems": [
     {
+      "slug": "kya-maine-pucha",
+      "title": "Kya Maine Pucha?",
+      "language": "Hindi / Urdu",
+      "script": "latin",
+      "chapter": "heartbreak",
+      "text": "Kya maine pucha tha ki aao zindagi mein,\nKya maine kaha tha ki bas jao dil mein,\nTum khud hi bane the meri jeene ki wajah,\nAb kyun chhod gaye mujhe dard-e-tanhai mein?\n\nKya maine pucha tha ki kasmein hazaar do,\nMeri berang duniya ko khushiyon se sanwaar do,\nMaine toh bas tumhe apni duaon mein maanga tha,\nKya kaha tha ki mujhe umar bhar ka intezaar do?\n\nKya maine pucha tha ki khwaab dikha kar tod do,\nMeri hansti hui aankhon ko ashkon se jod do,\nTumhare baad ab khud se bhi mohabbat nahi rahi,\nKya maine pucha tha ki mujhe mujhse hi juda kar do? ",
+      "translation": "Have I asked you...??"
+    },
+    {
       "slug": "she-shines",
       "title": "She Shines",
       "language": "English",
