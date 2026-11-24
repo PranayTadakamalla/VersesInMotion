@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { SplitReveal } from "./ui";
 import { useSite } from "./Providers";
 import { copy } from "@/lib/content";
-import { stanzas, type Chapter, type Poem } from "@/lib/poems";
+import { parsePoemLine, stanzas, type Chapter, type Poem } from "@/lib/poems";
 
 const InkSky = dynamic(() => import("./three/InkSky"), { ssr: false });
 
@@ -41,7 +41,7 @@ export default function PoemReader({
   const [canSpeak, setCanSpeak] = useState(false);
   const cancelled = useRef(false);
   const blocks = useMemo(() => stanzas(poem.text), [poem.text]);
-  const flat = useMemo(() => blocks.flat(), [blocks]);
+  const flat = useMemo(() => blocks.flat().map((line) => parsePoemLine(line).text), [blocks]);
 
   useEffect(() => {
     setCanSpeak(typeof window !== "undefined" && "speechSynthesis" in window);
@@ -183,8 +183,10 @@ export default function PoemReader({
               {stanza.map((line) => {
                 const i = lineIndex++;
                 const isLast = i === flat.length - 1;
+                const { isSubtitle, text } = parsePoemLine(line);
+                const MotionLine = isSubtitle && text ? motion.h2 : motion.p;
                 return (
-                  <motion.p
+                  <MotionLine
                     key={i}
                     initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -192,13 +194,14 @@ export default function PoemReader({
                     transition={{ duration: 1.1, ease: silk, delay: 0.1 + (i % 4) * 0.08 }}
                     className={clsx(
                       "transition-[color,text-shadow] duration-500",
+                      isSubtitle && text && "poem-subtitle",
                       activeLine === i && "text-moon [text-shadow:0_0_24px_rgba(246,238,219,0.55)]",
                       speaking && activeLine !== i && "text-bone/40",
                     )}
                   >
-                    {line}
+                    {text || (isSubtitle ? " " : text)}
                     {isLast && poem.unfinished && <span className="caret" aria-hidden />}
-                  </motion.p>
+                  </MotionLine>
                 );
               })}
             </div>
@@ -214,9 +217,7 @@ export default function PoemReader({
             transition={{ duration: 1.6 }}
           >
             <p className="label !text-ember">{copy.unfinished.label}</p>
-            <p className="italic-serif mt-3 text-xl text-bone/55">
-              {copy.unfinished.text}
-            </p>
+            <p className="italic-serif mt-3 text-xl text-bone/55">{copy.unfinished.text}</p>
           </motion.div>
         ) : (
           <p className="breathe mt-12 text-center text-3xl" style={{ color: chapter.palette[0] }} aria-hidden>
