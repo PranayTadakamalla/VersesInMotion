@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import clsx from "clsx";
 import { LANGUAGES, SCRIPTS, slugify, type Language, type Poem, type Script, type SiteContent } from "@/lib/schema";
+import { parsePoemLine } from "@/lib/poems";
 import type { Mutate } from "./Studio";
 import { Area, Btn, Field, Order, Panel, Select, Text, Toggle, inputCls, move } from "./fields";
 
@@ -35,7 +36,7 @@ export default function PoemsPanel({ draft, base, mutate }: { draft: SiteContent
     .filter(
       ({ p }) =>
         (chapter === "all" || p.chapter === chapter) &&
-        (!q.trim() || `${p.title} ${p.translation ?? ""} ${p.text}`.toLowerCase().includes(q.trim().toLowerCase())),
+        (!q.trim() || `${p.title} ${p.translation ?? ""} ${p.text.replace(/^## /gm, "")}`.toLowerCase().includes(q.trim().toLowerCase())),
     );
 
   const add = () => {
@@ -227,9 +228,14 @@ export default function PoemsPanel({ draft, base, mutate }: { draft: SiteContent
                 <div className={clsx("mt-6 text-lg text-bone/85", scriptClass(poem.script))}>
                   {poem.text.split(/\n\s*\n/).map((st, i) => (
                     <div key={i} className="mb-4">
-                      {st.split("\n").map((l, j) => (
-                        <p key={j}>{l || " "}</p>
-                      ))}
+                      {st.split("\n").map((line, j) => {
+                        const { isSubtitle, text } = parsePoemLine(line);
+                        return isSubtitle && text ? (
+                          <h2 key={j} className="poem-subtitle">{text}</h2>
+                        ) : (
+                          <p key={j}>{text || " "}</p>
+                        );
+                      })}
                     </div>
                   ))}
                   {poem.unfinished && <span className="caret" />}

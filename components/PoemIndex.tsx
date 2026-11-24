@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
 import clsx from "clsx";
-import { chapters, getChapter, poems, type ChapterSlug, type Poem } from "@/lib/poems";
+import { chapters, getChapter, poems, poemTextWithoutMarkers, type ChapterSlug, type Poem } from "@/lib/poems";
 import { useSite } from "./Providers";
 import { copy } from "@/lib/content";
 import { SplitReveal } from "./ui";
@@ -29,7 +29,7 @@ export default function PoemIndex() {
       (p) =>
         (chapter === "all" || p.chapter === chapter) &&
         (lang === "All" || p.language === lang) &&
-        (!needle || normalise(`${p.title} ${p.translation ?? ""} ${p.text}`).includes(needle)),
+        (!needle || normalise(`${p.title} ${p.translation ?? ""} ${poemTextWithoutMarkers(p.text)}`).includes(needle)),
     );
   }, [chapter, lang, q]);
 
@@ -49,9 +49,7 @@ export default function PoemIndex() {
           <SplitReveal text="The Poems" play={ready} stagger={0.05} />
         </h1>
         <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
-          <p className="italic-serif text-2xl text-bone/60">
-            {copy.index.line}
-          </p>
+          <p className="italic-serif text-2xl text-bone/60">{copy.index.line}</p>
         </div>
 
         {/* filters */}
@@ -145,52 +143,44 @@ export default function PoemIndex() {
               );
             })}
           </AnimatePresence>
-          {list.length === 0 && (
-            <p className="italic-serif py-24 text-center text-3xl text-bone/50">
-              {copy.index.empty}
-            </p>
-          )}
+          {list.length === 0 && <p className="italic-serif py-24 text-center text-3xl text-bone/50">{copy.index.empty}</p>}
         </div>
       </div>
 
       {/* trailing verse preview (desktop) */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-40 hidden w-80 lg:block"
-        style={{ x, y }}
-      >
+      <motion.div aria-hidden className="pointer-events-none fixed left-0 top-0 z-40 hidden w-80 lg:block" style={{ x, y }}>
         <div className="translate-x-6 -translate-y-1/2">
-        <AnimatePresence>
-          {hover && hoverChapter && (
-            <motion.div
-              key={hover.slug}
-              initial={{ opacity: 0, scale: 0.9, rotate: -3, filter: "blur(6px)" }}
-              animate={{ opacity: 1, scale: 1, rotate: -1.5, filter: "blur(0px)" }}
-              exit={{ opacity: 0, scale: 0.95, filter: "blur(6px)" }}
-              transition={{ duration: 0.45, ease: silk }}
-              className="overflow-hidden border border-bone/15 p-6 shadow-2xl"
-              style={{ background: `linear-gradient(160deg, ${hoverChapter.palette[2]}, #07060a)` }}
-            >
-              <p className="label mb-3" style={{ color: hoverChapter.palette[0] }}>
-                {hoverChapter.glyph} {hoverChapter.title}
-              </p>
-              <div
-                className={clsx(
-                  "text-bone/80",
-                  hover.script === "devanagari" ? "script-devanagari text-base" : hover.script === "telugu" ? "script-telugu text-base" : "italic-serif text-lg leading-snug",
-                )}
+          <AnimatePresence>
+            {hover && hoverChapter && (
+              <motion.div
+                key={hover.slug}
+                initial={{ opacity: 0, scale: 0.9, rotate: -3, filter: "blur(6px)" }}
+                animate={{ opacity: 1, scale: 1, rotate: -1.5, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 0.95, filter: "blur(6px)" }}
+                transition={{ duration: 0.45, ease: silk }}
+                className="overflow-hidden border border-bone/15 p-6 shadow-2xl"
+                style={{ background: `linear-gradient(160deg, ${hoverChapter.palette[2]}, #07060a)` }}
               >
-                {hover.text
-                  .split("\n")
-                  .filter(Boolean)
-                  .slice(0, 4)
-                  .map((l, i) => (
-                    <p key={i}>{l}</p>
-                  ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                <p className="label mb-3" style={{ color: hoverChapter.palette[0] }}>
+                  {hoverChapter.glyph} {hoverChapter.title}
+                </p>
+                <div
+                  className={clsx(
+                    "text-bone/80",
+                    hover.script === "devanagari" ? "script-devanagari text-base" : hover.script === "telugu" ? "script-telugu text-base" : "italic-serif text-lg leading-snug",
+                  )}
+                >
+                  {poemTextWithoutMarkers(hover.text)
+                    .split("\n")
+                    .filter(Boolean)
+                    .slice(0, 4)
+                    .map((line, i) => (
+                      <p key={i}>{line}</p>
+                    ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.div>
     </div>

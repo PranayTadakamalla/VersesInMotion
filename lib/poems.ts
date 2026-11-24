@@ -22,6 +22,14 @@ export function neighbours(slug: string) {
   };
 }
 
+export function parsePoemLine(line: string) {
+  const isSubtitle = line.startsWith("## ");
+  return { isSubtitle, text: isSubtitle ? line.slice(3) : line };
+}
+
+/** Returns poem text suitable for previews, search and metadata. */
+export const poemTextWithoutMarkers = (text: string) => text.split("\n").map((line) => parsePoemLine(line).text).join("\n");
+
 export const stanzas = (text: string) => text.split(/\n\s*\n/).map((s) => s.split("\n"));
 
-export const firstLine = (p: Poem) => p.text.split("\n")[0];
+export const firstLine = (p: Poem) => poemTextWithoutMarkers(p.text).split("\n")[0];

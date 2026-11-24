@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import clsx from "clsx";
 import { useSite } from "./Providers";
 import { Rise, SplitReveal, Tilt } from "./ui";
-import { stanzas, type Chapter, type Poem } from "@/lib/poems";
+import { poemTextWithoutMarkers, stanzas, type Chapter, type Poem } from "@/lib/poems";
 
 const InkSky = dynamic(() => import("./three/InkSky"), { ssr: false });
 const silk = [0.22, 1, 0.36, 1] as const;
@@ -55,7 +55,7 @@ export default function ChapterView({ chapter, list, next }: { chapter: Chapter;
       <section className="relative px-5 pb-32 md:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 xl:grid-cols-3">
           {list.map((p, i) => {
-            const first = stanzas(p.text)[0].slice(0, 4);
+            const first = stanzas(poemTextWithoutMarkers(p.text))[0].slice(0, 4);
             return (
               <Rise key={p.slug} delay={(i % 3) * 0.1}>
                 <Tilt max={7} className="h-full">
@@ -90,8 +90,8 @@ export default function ChapterView({ chapter, list, next }: { chapter: Chapter;
                         p.script === "devanagari" ? "script-devanagari text-base" : p.script === "telugu" ? "script-telugu text-base" : "italic-serif text-xl leading-snug",
                       )}
                     >
-                      {first.map((l, j) => (
-                        <p key={j}>{l}</p>
+                      {first.map((line, j) => (
+                        <p key={j}>{line}</p>
                       ))}
                       <p className="label mt-6 !text-bone/40 transition-colors duration-500 group-hover:!text-bone">Read →</p>
                     </div>
